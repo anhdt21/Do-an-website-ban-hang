@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Detail</title>
+</head>
+<body>
+<h1>Edit Detail</h1>
+<p>
+    <a href="/billDetails"> List Detail</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-billDetail}" th:object="${billDetail}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Amount</td>
+            <td><input type="text" th:field="*{amount}"></td>
+        </tr>
+        <tr>
+            <td>Unit Price</td>
+            <td><input type="text" th:field="*{unitPrice}"></td>
+        </tr>
+        <tr>
+            <td>ID Hóa Đơn</td>
+            <td><input type="text" th:field="*{idBill}"></td>
+        </tr>
+        <tr>
+            <td>ID Sản Phẩm</td>
+            <td><input type="text" th:field="*{idProduct}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update Detail"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

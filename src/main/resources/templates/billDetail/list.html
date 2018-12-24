@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Detail</title>
+</head>
+<body>
+<h1>List Detail</h1>
+<p>
+    <a href="/create-billDetail"> Create List </a>
+</p>
+<form action="">
+    Search by Detail
+    <input type="text" name="s">
+    <input type="submit" value="search">
+</form>
+<table border="1">
+    <tr>
+        <th>Số Lượng</th>
+        <th>Giá Sản Phẩm</th>
+        <th>ID Hóa Đơn</th>
+        <th>ID Sản Phẩm</th>
+    </tr>
+    <th:block th:each="billDetail : ${billDetails}">
+        <tr>
+            <td th:text="${billDetail.amount}"></td>
+            <td th:text="${billDetail.unitPrice}"></td>
+            <td th:text="${billDetail.idBill}"></td>
+            <td th:text="${billDetail.idProduct}"></td>
+            <td><a th:href="@{/edit-billDetail/__${billDetail.id}__}">Edit</a></td>
+            <td><a th:href="@{/delete-billDetail/__${billDetail.id}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/billDetails'(page=${billDetails.number - 1})}" th:if="${billDetails.hasPrevious()}">Previous</a>
+    <span th:text="${billDetails.number + 1}"></span>/<span th:text="${billDetails.totalPages}"></span>
+    <a th:href="@{'/billDetails'(page=${billDetails.number + 1})}" th:if="${billDetails.hasNext()}">Next</a>
+</div>
+</body>
+</html>

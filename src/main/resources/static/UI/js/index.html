@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html lang="en">
+<head>
+    <title>Skinning the Nivo Slider</title>
+    <link rel="stylesheet" href="scripts/nivo-slider/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+</head>
+<body>
+   
+
+        <div id="slider-wrapper">
+            
+            <div id="featured"></div>
+            <div id="slider" class="nivoSlider">
+                <img src="images/1.jpg" alt="" title="#caption1" />
+                <img src="images/2.jpg" alt="" title="#caption2" />
+                <img src="images/3.jpg" alt="" title="#caption3" />
+                <img src="images/4.jpg" alt="" title="#caption4" />
+            </div>
+            <div id="caption1" class="nivo-html-caption">
+                <a href="#">Sunrise</a>
+            </div>
+            <div id="caption2" class="nivo-html-caption">
+                <a href="#">Mulholland Canyon</a>
+            </div>
+            <div id="caption3" class="nivo-html-caption">
+                <a href="#">Golden Coast</a>
+            </div>
+            <div id="caption4" class="nivo-html-caption">
+                <a href="#">Crashing...</a>
+            </div>
+        </div>
+
+    <script type="text/javascript" src="scripts/jquery-1.4.3.min.js"></script>
+    <script type="text/javascript" src="scripts/nivo-slider/jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider({
+            directionNav:false
+        });
+    });
+    </script>
+</body>
+</html>

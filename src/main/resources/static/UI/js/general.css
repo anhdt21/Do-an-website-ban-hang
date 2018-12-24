@@ -1,0 +1,23 @@
+ul.menu{ list-style:none; margin:auto; padding:0px;}
+ul.menu li{ float:left; margin-right:10px;  display:block; padding-left:20px; padding-right:20px; padding-top:8px; padding-bottom:8px; 
+color: #00A9F4;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px !important;
+    list-style-type: none;
+    text-shadow: 1px 1px #FFFFFF;
+    text-transform: uppercase;
+
+}
+ul.menu li.active{ float:left; color:#FFF; background:url(../images/bgtab.jpg); border:solid 1px #3d3d3d; border-bottom:none; text-shadow:none;
+-moz-border-radius:5px 5px 0px 0px;-webkit-border-radius:5px 5px 0px 0px;border-radius:5px 5px 0px 0px;behavior:url(PIE.htc);
+
+}
+#imageca{ float:left; text-align:center; width:240px; padding:10px 10px 10px; background:#d9dcdc;-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px;behavior:url(PIE.htc);}
+#imageca img{margin-bottom:10px;-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px;behavior:url(PIE.htc);}
+#listca{ float:right; width:320px;}
+#listca ul{ list-style:url(../images/litab.jpg); margin:auto; padding:0px}
+#listca ul li{margin-left:30px; margin-bottom:10px;}
+#listca ul li a{ font-size:13px; font-weight:bold; color:#646464; text-decoration:none}
+#listca ul li a:hover{color:#009fdc}

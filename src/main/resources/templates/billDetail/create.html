@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Create</title>
+</head>
+<body>
+<h1>Detail Create</h1>
+<p>
+    <a href="/billDetails"> Detail List</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/create-billDetail}" th:object="${billDetail}" method="post">
+    <table>
+        <tr>
+            <td>Amount</td>
+            <td><input type="text" th:field="*{amount}"></td>
+        </tr>
+        <tr>
+            <td>Unit Price</td>
+            <td><input type="text" th:field="*{unitPrice}"></td>
+        </tr>
+        <tr>
+            <td>ID Hóa Đơn</td>
+            <td><input type="text" th:field="*{idBill}"></td>
+        </tr>
+        <tr>
+            <td>ID Sản Phẩm</td>
+            <td><input type="text" th:field="*{idProduct}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create Detail"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

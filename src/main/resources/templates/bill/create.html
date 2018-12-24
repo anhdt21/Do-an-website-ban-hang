@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Bill</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="tien">
+<fieldset >
+    <legend><h1>Create Bill</h1>
+    </legend>
+        <p>
+            <a href="/bills">Bill list</a>
+        </p>
+        <th:block th:if="${message}" >
+            <p th:text="${message}"></p>
+        </th:block>
+        <form th:action="@{/create-bill}" th:object="${bill}" method="post">
+            <div class="table">
+            <table>
+                <tr>
+                    <td>Ngày Đặt Hàng</td>
+                    <td><input type="text" th:field="*{dateOrder}"></td>
+                </tr>
+                <tr>
+                    <td>Tổng</td>
+                    <td><input type="text" th:field="*{total}"></td>
+                </tr>
+                <tr>
+                    <td>Thanh Toán</td>
+                    <td><input type="text" th:field="*{payment}"></td>
+                </tr>
+                <tr>
+                    <td>Ghi Chú</td>
+                    <td><input type="text" th:field="*{note}"></td>
+                </tr>
+                <tr>
+                    <td>ID Khách Hàng</td>
+                    <td><input type="text" th:field="*{idCustomer}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Create Bill"></td>
+                </tr>
+            </table>
+            </div>
+        </form>
+</fieldset>
+</div>
+</body>
+</html>

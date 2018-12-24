@@ -1,0 +1,51 @@
+
+
+
+/*-----------SLIDER---------------*/
+	#slider-wrapper { width:960px; height:480x; overflow:hidden; position:relative;}
+	#slider {position:relative;	background:url("loading.gif") no-repeat 50% 50%;}
+	#slider img {position:absolute;	top:0px; left:0px; display:none;}
+	#slider a {	border:0; display:block;}
+	
+	/* Controler 1..2..3 */
+	.nivo-controlNav { position:absolute; right:80px; bottom:15px;}
+	.nivo-controlNav a {
+		position:relative; z-index:9;float:left;
+		cursor:pointer;	display:block;
+		height:14px; width:14px; margin:0 0 0 5px;
+		background: url("slidetabs.png") top center no-repeat;
+		text-indent:-9999px;border:0;}
+	.nivo-controlNav a.active {background:url("slidetabs.png") bottom center;}
+	/* Direction NEXT - PREV */
+	.nivo-directionNav a {
+		text-indent:-99999px;
+		width:25px;	height:25px;
+		background:url("arrows.png") no-repeat;
+		position:absolute; bottom:10px;	z-index:9;
+		cursor:pointer;	display:block;}
+	a.nivo-nextNav { background-position:-25px 0; right:10px;}
+	a.nivo-nextNav:hover { background-position:-25px -25px;}
+	a.nivo-prevNav { right:45px;}
+	a.nivo-prevNav:hover { background-position:0 -25px;}
+	/*SLider caption*/
+	.nivo-caption {
+		position:absolute; right:0px; bottom:0px; z-index:8;
+	/*	background: url("opacity01.png"); color:#fff;													*/
+		width:250px; height:100%;
+		font-family: Helvetica, Arial, sans-serif;}
+/*	.nivo-caption p { padding:10px; margin:0;background: url("opacity01.png") ; float:right; width:220px; height:100%;}        */
+	.nivo-caption a.caption-title { display:inline-block;font-size:17px; margin:0 0 5px 0;}
+	.nivo-caption a:hover{text-decoration:underline}
+	.nivo-html-caption {display:none;}
+	/* The Nivo Slider styles */
+	.nivoSlider { position:relative;}
+	.nivoSlider img { position:absolute; top:0px; left:0px;}
+	/* If an image is wrapped in a link */
+	.nivoSlider a.nivo-imageLink {position:absolute; top:0px; left:0px; width:100%; height:100%; border:0; padding:0; margin:0; z-index:6; display:none;}
+	/* The slices and boxes in the Slider */
+	.nivo-slice { display:block; position:absolute; z-index:5; height:100%;}
+	.nivo-box {	display:block; position:absolute; z-index:5;}
+
+
+
+

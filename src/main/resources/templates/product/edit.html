@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product</title>
+</head>
+<body>
+<h1>Sửa Thông Tin Sản Phẩm</h1>
+<p>
+    <a href="/products">Chuyển đến trang danh sách</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-product}" th:object="${product}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Tên</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Ảnh</td>
+            <td><input type="file" th:field="*{image}"></td>
+        </tr>
+            <td>Size</td>
+            <td><input type="text" th:field="*{size}"></td>
+        </tr>
+        <tr>
+            <td>Sản Phẩm Hot</td>
+            <td><input type="text" th:field="*{hot}"></td>
+        </tr>
+        <tr>
+            <td>Chi tiết</td>
+            <td><input type="text" th:field="*{detail}"></td>
+        </tr>
+        <tr>
+            <td>Giá Sản Phẩm</td>
+            <td><input type="text" th:field="*{unitPrice}"></td>
+        </tr>
+        <tr>
+            <td>Giá Khuyến Mãi</td>
+            <td><input type="text" th:field="*{promotionPrice}"></td>
+        </tr>
+        <tr>
+            <td>Loại Sản Phẩm</td>
+            <td>
+                <select th:field="*{productType}"} style="width: 100%;">
+                    <option th:each="productType : ${productTypes}" th:value="${productType.id}" th:text="${productType.name}">
+
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Nhà Sản Xuất</td>
+            <td>
+                <select th:field="*{producer}"} style="width: 100%;">
+                    <option th:each="producer : ${producers}" th:value="${producer.id}" th:text="${producer.name}">
+
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Sửa Sản Phẩm"></td>
+        </tr>
+        </table>
+</form>
+</body>
+</html>

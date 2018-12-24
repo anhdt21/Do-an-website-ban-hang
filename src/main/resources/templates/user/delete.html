@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete product</title>
+</head>
+<body>
+<h1>Delete product</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a href="/users">Product list</a>
+</p>
+<form th:action="@{/delete-user}" th:object="${user}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Tên Đăng Nhập:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="text" th:field="*{password}"/></td>
+        </tr>
+        <tr>
+            <td>Tên Người Dùng:</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td> Email:</td>
+            <td><input type="text" th:field="*{email}"></td>
+        </tr>
+        <tr>
+            <td>Địa Chỉ</td>
+            <td><input type="text" th:field="*{address}"></td>
+        </tr>
+        <tr>
+            <td>Ngày Sinh</td>
+            <td><input type="date" th:field="*{birthDay}"></td>
+        </tr>
+        <tr>
+            <td>Số Điện Thoại</td>
+            <td><input type="text" th:field="*{phone}"></td>
+        </tr>
+
+        <tr>
+            <td>Role</td>
+            <td><input type="text" th:field="*{role}"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete user"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

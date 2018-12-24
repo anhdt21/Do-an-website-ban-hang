@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit bill</title>
+</head>
+<body>
+<h1>Edit Bill</h1>
+<p>
+    <a href="/bills">Bill List</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-bill}" th:object="${bill}" method="post">
+    <input th:type="hidden"  name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Ngày Đặt Hàng</td>
+            <td><input type="text" th:field="*{dateOrder}"></td>
+        </tr>
+        <tr>
+            <td>Tổng</td>
+            <td><input type="text" th:field="*{total}"></td>
+        </tr>
+        <tr>
+            <td>Thanh Toán</td>
+            <td><input type="text" th:field="*{payment}"></td>
+        </tr>
+        <tr>
+            <td>Ghi Chú</td>
+            <td><input type="text" th:field="*{note}"></td>
+        </tr>
+        <tr>
+            <td>ID Khách Hàng</td>
+            <td><input type="text" th:field="*{idCustomer}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Sửa Hóa Đơn"></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
