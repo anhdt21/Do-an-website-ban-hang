@@ -33,7 +33,7 @@ dependencies {
     implementation('org.springframework.session:spring-session-core')
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
     runtimeOnly('mysql:mysql-connector-java')
-    compileOnly('MvcWebApplicationInitializer')
+//    compileOnly('MvcWebApplicationInitializer')
 //SecurityWebApplicationInitializer
 //WebConfig
 //WebSecurityConfig'org.projectlombok:lombok')
