@@ -12,6 +12,6 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("/chiuchet/**")
-                .addResourceLocations("file:/G:/images/","/other-resources/");
+                .addResourceLocations("file:/G:/images/", "/other-resources/");
     }
 }
