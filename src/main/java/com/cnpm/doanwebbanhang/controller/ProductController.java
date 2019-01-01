@@ -85,12 +85,12 @@ public class ProductController {
         if (s == null) {
             products = productService.findAll(pageable);
         } else {
+
             products = productService.findAllByNameContaining(s, pageable);
         }
         ModelAndView modelAndView = new ModelAndView("/product/list");
         modelAndView.addObject("products", products);
         return modelAndView;
-
     }
 
     @GetMapping("/edit-product/{id}")

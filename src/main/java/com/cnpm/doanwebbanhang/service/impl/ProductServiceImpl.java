@@ -38,4 +38,9 @@ public class ProductServiceImpl implements ProductService {
     public void remove(Integer id) {
     productRepository.deleteById(id);
     }
+
+    @Override
+    public Page<Product> findAllByProducer_Id(Long s, Pageable pageable) {
+        return productRepository.findAllByProducer_Id(s, pageable);
+    }
 }

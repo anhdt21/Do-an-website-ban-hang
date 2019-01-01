@@ -16,14 +16,14 @@ body{margin:auto; padding:auto; background:url(images/linen.png); font-family:Ar
 #header .right .top ul li a{ display:block; color:#000; font-size:12px; padding:2px 10px 2px 10px; background:#ecf7fc; border:solid 1px #c6dde6;-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px;behavior:url(PIE.htc);}
 #header .right .top ul li a:hover{ background:url(images/tophover.jpg); color:#FFF; text-decoration:none}
 #menubg{ float:left; width:1000px; height:71px; background:url(images/menubg.jpg);-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px;behavior:url(PIE.htc);}
-#home{ float:left; width:762px;}
-#boxcategory{ float:left; width:760px; margin-top:10px; border:solid 1px #c1d4db}
-#title_category{ float:left; width:760px; height:29px; border-bottom:solid 1px #c1d4db; background:url(images/title_category.jpg)}
+#home{ float:left; width:1000px;}
+#boxcategory{ float:left; width:1000px; margin-top:10px; border:solid 1px #c1d4db}
+#title_category{ float:left; width:990px; height:29px; border-bottom:solid 1px #c1d4db; background:url(images/title_category.jpg)}
 #title_category .cate1{ float:left; width:156px; height:29px; background:url(images/cate1.jpg)}
 #title_category .cate1 a{display:block; padding-left:15px; padding-top:6px; font-size:12px; color:#FFF; font-weight:bold;}
 #title_category .cate2{ float:left; height:23px; padding-left:5px; padding-top:6px; }
 #title_category .cate2 a{ display:block; float:left; font-size:12px; color:#0c93d7; padding-left:10px; padding-right:10px}
-#boxproduct{ float:left; width:189px;border-left:dashed 1px #CCC; height:170px }
+#boxproduct{ float:left; width:195px;border-left:dashed 1px #CCC; height:170px }
 #boxproduct .image{ margin:auto; width:160px; height:120px; }
 #boxproduct .image img{  width:160px; height:120px; border:0px }
 #boxproduct .title{ float:left; width:180px; padding-left:5px; padding-right:4px; height:30px; text-align:center}

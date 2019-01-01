@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:www.thymeleaf.org">
+<html xmlns:th="http:www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
@@ -12,26 +12,17 @@
 <body>
 <div id="page">
 <div id="header">
-	<div class="logo"></div>
+	<div class="logo"><img th:src="@{/images/logo-tuananh.jpg}" height="40" width="100"/></div>
     <div class="right">
-    	<div class="top">
-        	<ul>
-            	<li><a href="">Giới thiệu</a></li>
-            	<li><a href="">Tuyển dụng</a></li>
-            	<li><a href="">Hỏi đáp</a></li>
-            	<li><a href="">Liên hệ</a></li>
-            </ul>
-        </div>
         <div style="float:left; width:600px; padding-top:10px;">
         <div id="formsearch">
         <form>
-        <input type="text" class="inputsearch" />
-        <input type="submit" class="smsearch" value=""/>
+        <input type="text" name="s" class="inputsearch" />
+        <input type="submit" class="search" value="Search"/>
         </form>
         </div>
-        <div style="float:left; width:72px; height:25px;"><img src="images/nangcao.jpg" /></div>
-        <div style="float:left; padding-left:50px"><img src="images/giohang.jpg" /></div>
-        <div style="float:left; padding-left:10px; padding-top:5px; font-size:12px; font-weight:bold">Giỏ hàng của bạn: (10)</div>
+            <a href="#"><div style="float:left; padding-left:50px"><img th:src="@{/images/giohang.jpg}" /></div></a>
+            <a href="#"><div style="float:left; padding-left:10px; padding-top:5px; font-size:12px; font-weight:bold">Giỏ hàng</div></a>
         </div>
         
     </div>
@@ -46,186 +37,61 @@
 	<div id="wrap" class="bgheader2">
               <ul class="sf-js-enabled sf-shadow" id="topmenu">
         <li class="active">
-        <a href="http://vdconline.vn/ids" class="sf-with-ul">
+        <a href="#" class="sf-with-ul">
             Trang chủ<span class="sf-sub-indicator"> »</span></a>
-                    <ul style="display: none; visibility: hidden; left: 166px; width: 1000; background: none repeat scroll 0% 0% rgb(20, 74, 148);" class="sf-menu">
-                
-                    <li><a href="http://vnpt-ca.vn/" target="" class="sf-with-ul">
-                        Máy tính xách <span class="sf-sub-indicator"> »</span></a>
-
-                        
-                     <ul style="display: none; visibility: hidden;">
-                            
-                                </ul>
-                    </li>
-                
-                    <li><a href="" target="" class="sf-with-ul">
-                        Linh kiện máy tính<span class="sf-sub-indicator"> »</span></a>
-
-                        
-                                <ul style="display: none; visibility: hidden;">
-                            
-                                <li><a href="">
-                                    Giới thiệu tên miền</a></li>
-                            
-                                <li><a href="">
-                                    Bảng giá tên miền</a></li>
-                            
-                                <li><a href="">
-                                    Tư vấn lựa chọn</a></li>
-                            
-                                <li><a href="">
-                                    Chuyển tên miền về VDC</a></li>
-                            
-                                <li><a href="">
-                                    Hỏi đáp tên miền</a></li>
-                            
-                                <li><a href="">
-                                    DS tên miền theo địa giới HC</a></li>
-                            
-                                </ul>
-                    </li>
-                
-                    <li><a href="" target="" class="sf-with-ul">
-                         Linh kiện Laptop<span class="sf-sub-indicator"> »</span></a>
-
-                        
-                                <ul style="display: none; visibility: hidden;">
-                            
-                                <li><a href="">
-                                    Giới thiệu</a></li>
-                            
-                                <li><a href="">
-                                    Bảng giá Hosting</a></li>
-                            
-                                <li><a href="">
-                                    Bảng giá Reseller Hosting</a></li>
-                            
-                                <li><a href="">
-                                    Hỏi đáp Hosting</a></li>
-                            
-                                </ul>
-                    </li>
-                
-                    <li><a href="http://vdconline.vn/ids/thue-cho-dat-may-chu/c/410/s/463/466" target="" class="sf-with-ul">
-                         Thiết bị khác <span class="sf-sub-indicator"> »</span></a>
-
-                        
-                                <ul style="display: none; visibility: hidden;">
-                            
-                                <li><a href="#">
-                                    Thuê chỗ đặt máy chủ</a></li>
-                            
-                                <li><a href="">
-                                    Máy chủ ảo VPS</a></li>
-                            
-                                <li><a href="">
-                                    Máy chủ riêng Dedicated</a></li>
-                            
-                                <li><a href="">
-                                    Dịch vụ quản trị máy chủ</a></li>
-                            
-                                <li><a href="">
-                                    Hỏi đáp máy chủ</a></li>
-                            
-                                </ul>
-                    </li>
-                
-                    </ul>
         </li>
         <li class="">
         <a href="" class="sf-with-ul">
-           Thiết bị tin học <span class="sf-sub-indicator"> »</span></a>
+           Loại sản phẩm <span class="sf-sub-indicator"> »</span></a>
 
-
-            
-                    
-                
         </li>
-    
-        
-    
+
         <li class="">
-        
         <a href="" class="sf-with-ul">
-            Thiết bị văn phòng<span class="sf-sub-indicator"> »</span></a>
+            Hãng sản xuất<span class="sf-sub-indicator"> »</span></a>
 
 
-            
+
                     <ul style="display: none; visibility: hidden; left: 166px; width: 931px; background: none repeat scroll 0% 0% rgb(20, 74, 148);" class="sf-menu">
-                
+
                     <li><a href="" target="" class="sf-with-ul">
                         Giám sát hệ thống<span class="sf-sub-indicator"> »</span></a>
 
-                        
+
                                 <ul style="display: none; visibility: hidden;">
-                            
+
                                 </ul>
                     </li>
-                
+
                     <li><a href="" target="" class="sf-with-ul">
                         Quản trị hệ thống<span class="sf-sub-indicator"> »</span></a>
 
-                        
+
                                 <ul style="display: none; visibility: hidden;">
-                            
+
                                 </ul>
                     </li>
-                
+
                     </ul>
-                
+
         </li>
-    
+
         <li class="">
-        
+
         <a href="" class="sf-with-ul">
-           Sản phẩm cơ khí<span class="sf-sub-indicator"> »</span></a>
-
-
-            
-                    <ul style="display: none; visibility: hidden; left: 166px; width: 931px; background: none repeat scroll 0% 0% rgb(20, 74, 148);" class="sf-menu">
-                
-                    <li><a href="" target="" class="sf-with-ul">
-                        Tin VDC<span class="sf-sub-indicator"> »</span></a>
-
-                        
-                                <ul style="display: none; visibility: hidden;">
-                            
-                                </ul>
-                    </li>
-                
-                    <li><a href="" target="" class="sf-with-ul">
-                        Tin VDConline<span class="sf-sub-indicator"> »</span></a>
-
-                        
-                                <ul style="display: none; visibility: hidden;">
-                            
-                                </ul>
-                    </li>
-                
-                    <li><a href="" target="" class="sf-with-ul">
-                        Tin công nghệ thông tin<span class="sf-sub-indicator"> »</span></a>
-
-                        
-                                <ul style="display: none; visibility: hidden;">
-                            
-                                </ul>
-                    </li>
-                
-                    </ul>
-                
+           Sản phẩm Hot<span class="sf-sub-indicator"> »</span></a>
         </li>
-    
+
          <li>
             <a href="">
             <span id="ctl00_MenuHome1_rptMenu_ctl09_lblContact">Liên hệ</span>
-            
+
             </a>
         </li>
       </ul>
-    
 
-            
+
+
             <div class="moduletype2">
                 <div class="moduletype2_bgheader"></div>
             </div>
@@ -241,7 +107,7 @@
 <div id="bong"></div>
 <div id="boxtop">
 	<div id="boxslide">
-    <img th:src="@{/UI/images/slide.jpg}" width="715px" height="255px" />
+    <img th:src="@{/images/slide.jpg}" width="715px" height="255px" />
     </div>
     <div id="boxyahoo">
     	<div style="float:left;"><img th:src="@{/UI/images/contact.jpg}" /></div>
@@ -255,12 +121,12 @@
     <tr height="30px">
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>Kinh doanh -<strong> 04.6682.4458</strong></td>
+    <td>Đăng ký chi nhánh - <strong> 04.6682.4458</strong></td>
   </tr>
     <tr height="30px">
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>Kinh doanh - <strong>04.6682.4458</strong></td>
+    <td>Trao đổi trực tiếp - <strong>04.6682.4458</strong></td>
   </tr>
 </table>
 
@@ -270,15 +136,8 @@
 </div>
 <div id="home">
 <div id="boxcategory">
-	<div id="title_category" class="show_product_hot">
-    	<div class="cate1"><a href="">Thiết bị tin học</a></div>
-        <div class="cate2"><a href="">Máy tính xách tay</a><a style="padding-left:0px; padding-right:0px">|</a><a href="">Linh kiện máy tính</a><a style="padding-left:0px; padding-right:0px">|</a><a href="">Linh kiện Laptop</a></div>
-    </div>
-</div>
-<div id="boxcategory">
 	<div id="title_category">
-    	<div class="cate1"><a href="">Thiết bị tin học</a></div>
-        <div class="cate2"><a href="">Máy tính xách tay</a><a style="padding-left:0px; padding-right:0px">|</a><a href="">Linh kiện máy tính</a><a style="padding-left:0px; padding-right:0px">|</a><a href="">Linh kiện Laptop</a></div>
+    	<div class="cate1"><a href="">Tất Cả</a></div>
     </div>
     <div id="boxproduct" style="border-left:none">
     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
@@ -292,6 +151,131 @@
     </div>
     <div id="boxproduct">
     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+</div>
+<div id="boxcategory">
+	<div id="title_category">
+    	<div class="cate1"><a href="">Tivi</a></div>
+    </div>
+    <div id="boxproduct" style="border-left:none">
+    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+</div>
+<div id="boxcategory">
+	<div id="title_category">
+    	<div class="cate1"><a href="">Tủ Lạnh</a></div>
+    </div>
+    <div id="boxproduct" style="border-left:none">
+    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+</div>
+<div id="boxcategory">
+	<div id="title_category">
+    	<div class="cate1"><a href="">Máy Giặt</a></div>
+    </div>
+    <div id="boxproduct" style="border-left:none">
+    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+</div>
+<div id="boxcategory">
+	<div id="title_category">
+    	<div class="cate1"><a href="">Điều Hòa</a></div>
+    </div>
+    <div id="boxproduct" style="border-left:none">
+    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
+    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
+    <div class="price">100.000 VND</div>
+    </div>
+    <div id="boxproduct">
+     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
     <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
     <div class="price">100.000 VND</div>
     </div>
@@ -302,131 +286,35 @@
     </div>
 </div>
 
-<div style="float:left; width:760px; padding-top:5px;">
-<img style="float:left" th:src="@{/UI/images/ads1.jpg}"/>
-<img style="float:right" th:src="@{/UI/images/ads2.jpg}"/>
 </div>
-<div id="boxcategory">
-	<div id="title_category" class="show_product_sale">
-    	<div class="cate1"><a href="">Thiết bị tin học</a></div>
-        <div class="cate2"><a href="">Máy tính xách tay</a><a style="padding-left:0px; padding-right:0px">|</a><a href="">Linh kiện máy tính</a><a style="padding-left:0px; padding-right:0px">|</a><a href="">Linh kiện Laptop</a></div>
-    </div>
-    <div id="boxproduct" style="border-left:none">
-        <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-        <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-        <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-        <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-        <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-        <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-        <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-        <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-        <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-        <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-        <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-        <div class="price">100.000 VND</div>
-    </div>
-</div>
-<script type="text/javascript">
-    var project = [
-        {
-            name: 'TIVI LCD Sony KLV40BX420-40",Full HD1',
-            img: '/UI/images/product/tivi-lg-32lk5400bpta-20-550x340.jpg',
-            price: '1100.000 VND'
-        },
-        {
-            name: 'TIVI LCD Sony KLV40BX420-40",Full HD2',
-            img: '/UI/images/product/tivi-lg-43uk6340ptf-28-550x340.jpg',
-            price: '1200.000 VND'
-        },
-        {
-            name: 'TIVI LCD Sony KLV40BX420-40",Full HD3',
-            img: '/UI/images/product/tivi-samsung-ua32n4300-34-550x340.jpg',
-            price: '1300.000 VND'
-        },
-        {
-            name: 'TIVI LCD Sony KLV40BX420-40",Full HD4',
-            img: '/UI/images/product/tivi-sharp-lc-40sa5500-34-550x340.jpg',
-            price: '1400.000 VND'
-        }
-    ]
-    var divProduct = '';
-    $.each(project, function (key, value) {
-        divProduct = '<div id="boxproduct" style="border-left:none">';
-        divProduct += '<div class="image"><img src="'+ value.img +'" /></div>';
-        divProduct += '<div class="title"><a href="">' + value.name + '</a></div>';
-        divProduct += '<div class="price">' + value.price + '</div>';
-        divProduct += '</div>';
-        $('.show_product_hot').after(divProduct);
-    });
-</script>
-</div>
-<div id="right">
-	<div class="video">
-    <iframe width="228" height="200" src="http://www.youtube.com/embed/rANFhi7oYp4" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="quangcao">
-    	<div class="title"><img th:src="@{/UI/images/quangcao.jpg}" width="228px" /></div>
-        <div class="content">
-        <img th:src="@{/UI/images/ads4.jpg}" width="220px" />
-        <img th:src="@{/UI/images/ads3.jpg}" width="220px" />
-    </div>
-    </div>
-</div>
+
 <div style="clear:both"></div>
 </div>
 <div id="ft">
-<div style=" margin:auto; width:1000px">
+<div style=" margin:auto; width: 1000px">
 	<div id="ftnews">
     <table width="1000" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="250px">
-    	<div style="float:left; width:250px; font-weight:bold; color:#FFF; font-size:12px">Thông tin công ty</div>
-        <div style="float:left; width:230px">
-        <ul style="font-size:12px; margin:auto; padding:0px; color:#FFF">
-        <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Giới thiệu</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Tin tức hoạt động</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Tuyển dụng</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Liên hệ</a></li>
-        </ul>
-        </div>
-    </td>
-    <td width="250px">
-    <div style="float:left; width:250px; font-weight:bold; color:#FFF; font-size:12px">Thông tin công ty</div>
-        <div style="float:left; width:230px">
-        <ul style="font-size:12px; margin:auto; padding:0px; color:#FFF">
-        <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Giới thiệu</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Tin tức hoạt động</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Tuyển dụng</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Liên hệ</a></li>
-        </ul>
-        </div>
-    </td>
-    <td width="250px">
-    <div style="float:left; width:250px; font-weight:bold; color:#FFF; font-size:12px">Thông tin công ty</div>
-        <div style="float:left; width:230px">
-        <ul style="font-size:12px; margin:auto; padding:0px; color:#FFF">
-        <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Giới thiệu</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Tin tức hoạt động</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Tuyển dụng</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Liên hệ</a></li>
-        </ul>
-        </div>
-    </td>
-    <td width="250px">
-    <div style="float:left; width:250px; font-weight:bold; color:#FFF; font-size:12px">Thông tin công ty</div>
-        <div style="float:left; width:230px">
-        <ul style="font-size:12px; margin:auto; padding:0px; color:#FFF">
-        <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Giới thiệu</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Tin tức hoạt động</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Tuyển dụng</a></li>
-         <li style="margin-left:12px; margin-top:5px"><a style="color:#FFF" href="">Liên hệ</a></li>
-        </ul>
+        <div class="addr_right">
+            <h1>HỆ THỐNG SIÊU THỊ ĐIỆN MÁY TUẤN ANH</h1>
+            <div class="addr_left">
+                Sắp khai trương:
+            </div>
+            <p>
+                TUẤN ANH - Hưng Hà: Khu Nhân Cầu 1, Thị trấn Hưng Hà, Hưng Hà, Thái Bình <sup>08/1/2019</sup></p>
+            <p>
+                TUẤN ANH - Thạch Thành: Khu phố 5, TT. Kim Tân, H. Thạch Thành, Thanh Hóa <sup>08/1/2019</sup></p>
+            <p>
+                TUẤN ANH - Tam Điệp: 294 đường Quang Trung, P.Bắc Sơn, TP.Tam Điệp, Tỉnh Ninh Bình (Cạnh MBBank Tam Điệp) <sup>12/1/2019</sup></p>
+            <p>
+                TUẤN ANH - Ninh Bình 2: 416 Nguyễn Công Trứ, Phố Thanh Bình, P.Ninh Sơn, TP.Ninh Bình, Tỉnh Ninh Bình <sup>12/1/2019</sup></p>
+            <p>
+                TUẤN ANH - Cẩm Phả: 170 Trần Phú, P.Cẩm Tây, TP. Cẩm Phả, Quảng Ninh (Tòa nhà Vinacomin Cẩm Phả) <sup>12/1/2019</sup></p>
+            <p>
+                TUẤN ANH - Hiệp Hòa: Trung tâm thương mại Chợ Hiệp Hòa, TT.Thắng, H.Hiệp Hòa, Bắc Giang <sup>12/1/2019</sup></p>
+            <p>
+                TUẤN ANH - Quế Võ: Phượng Mao, H.Quế Võ, Tỉnh Bắc Ninh (gần DABACO Quế Võ)<sup>20/1/2019</sup></p>
         </div>
     </td>
   </tr>
@@ -436,10 +324,10 @@
     <div id="ftcontent">
     
     <span style="font-size:12px; color:#FFF">
-   <b>CÔNG TY TNHH THƯƠNG MẠI VÀ CÔNG NGHỆ AN NAM</b><br />
-Add: 28B-Khu TT in may 19-5 bộ công an Văn Quán - Hà Đông - Hà Nội<br />
-Tel: 0466836838 - 0466835886   Hotline: 0984089666(Mr Cường) - 0906235323(An Nam)<br />
-www.annam.vn  -  Email: info@annam.vn
+   <b>CÔNG TY TNHH THƯƠNG MẠI VÀ ĐIỆN TỬ TUẤN ANH</b><br />
+Add: 58 - Trần Bình - Mai Dịch - Cầu Giấy - Hà Nội<br />
+Tel: 0466836838 - 0466835886   Hotline: 0984089666(Mr T) - 0906235323(Mr A)<br />
+www.tuananh.vn  -  Email: info@tuananh.vn
 </span>
     
     </div>
