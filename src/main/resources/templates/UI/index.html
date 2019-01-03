@@ -2,7 +2,7 @@
 <html xmlns:th="http:www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>Home Page</title>
 <link th:href="@{/UI/style.css}" rel="stylesheet" type="text/css" />
 
 
@@ -18,11 +18,12 @@
         <div id="formsearch">
         <form>
         <input type="text" name="s" class="inputsearch" />
-        <input type="submit" class="search" value="Search"/>
+        <input type="submit" class="search" value="Tìm kiếm"/>
         </form>
         </div>
             <a href="#"><div style="float:left; padding-left:50px"><img th:src="@{/images/giohang.jpg}" /></div></a>
             <a href="#"><div style="float:left; padding-left:10px; padding-top:5px; font-size:12px; font-weight:bold">Giỏ hàng</div></a>
+            <a href="#"><div style="float:left;margin-left: 45px; padding-left:10px; padding-top:5px; font-size:12px; font-weight:bold">Đăng Nhập/ Đăng ký</div></a>
         </div>
         
     </div>
@@ -44,47 +45,79 @@
         <a href="" class="sf-with-ul">
            Loại sản phẩm <span class="sf-sub-indicator"> »</span></a>
 
+            <ul style="display: none; visibility: hidden; left: 166px; width: 931px; background: none repeat scroll 0% 0% rgb(20, 74, 148);" class="sf-menu">
+                <th:block th:each="product : ${productTypes}">
+                    <li><a th:href="@{/choice-product-type/__${product.id}__ }" target="" class="sf-with-ul">
+                        <span th:text="${product.name}"></span>
+                        <span class="sf-sub-indicator" > »</span></a>
+                        <ul style="display: none; visibility: hidden;">
+
+                        </ul>
+                    </li>
+                </th:block>
+            </ul>
+
         </li>
 
         <li class="">
         <a href="" class="sf-with-ul">
             Hãng sản xuất<span class="sf-sub-indicator"> »</span></a>
 
-
-
                     <ul style="display: none; visibility: hidden; left: 166px; width: 931px; background: none repeat scroll 0% 0% rgb(20, 74, 148);" class="sf-menu">
-
-                    <li><a href="" target="" class="sf-with-ul">
-                        Giám sát hệ thống<span class="sf-sub-indicator"> »</span></a>
-
-
+                        <th:block th:each="producer : ${producers}">
+                    <li><a th:href="@{/choice-producer/__${producer.id}__ }" target="" class="sf-with-ul">
+                        <span th:text="${producer.name}"></span>
+                        <span class="sf-sub-indicator" > »</span></a>
                                 <ul style="display: none; visibility: hidden;">
 
                                 </ul>
                     </li>
-
-                    <li><a href="" target="" class="sf-with-ul">
-                        Quản trị hệ thống<span class="sf-sub-indicator"> »</span></a>
-
-
-                                <ul style="display: none; visibility: hidden;">
-
-                                </ul>
-                    </li>
-
+                        </th:block>
                     </ul>
 
         </li>
 
         <li class="">
 
-        <a href="" class="sf-with-ul">
-           Sản phẩm Hot<span class="sf-sub-indicator"> »</span></a>
+        <a class="sf-with-ul">
+            Giá Sản Phẩm<span class="sf-sub-indicator"> »</span>
+            <ul style="display: none; visibility: hidden; left: 166px; width: 931px; background: none repeat scroll 0% 0% rgb(20, 74, 148);" class="sf-menu">
+
+                <li><a th:href="@{/cost5}" target="" class="sf-with-ul">
+                    Sản phẩm có giá nhỏ hơn 5 triệu<span class="sf-sub-indicator" > »</span></a>
+                    <ul style="display: none; visibility: hidden;">
+
+                    </ul>
+                </li>
+
+                <li><a th:href="@{/cost10}" target="" class="sf-with-ul">
+                    Sản phẩm có giá từ 5 đến 10 triệu<span class="sf-sub-indicator" > »</span></a>
+                    <ul style="display: none; visibility: hidden;">
+
+                    </ul>
+                </li>
+
+                <li><a th:href="@{/cost15}" target="" class="sf-with-ul">
+                    Sản phẩm có giá từ 10 đến 15 triệu<span class="sf-sub-indicator" > »</span></a>
+                    <ul style="display: none; visibility: hidden;">
+
+                    </ul>
+                </li>
+
+                <li><a th:href="@{/cost20}" target="" class="sf-with-ul">
+                    Sản phẩm có giá trên 15 triệu<span class="sf-sub-indicator" ></span></a>
+                    <ul style="display: none; visibility: hidden;">
+
+                    </ul>
+                </li>
+            </ul>
+
+        </a>
         </li>
 
-         <li>
-            <a href="">
-            <span id="ctl00_MenuHome1_rptMenu_ctl09_lblContact">Liên hệ</span>
+         <li class="">
+            <a th:href="@{/hot-product}">
+            <span id="ctl00_MenuHome1_rptMenu_ctl09_lblContact">Sản phẩm Hot</span>
 
             </a>
         </li>
@@ -137,153 +170,63 @@
 <div id="home">
 <div id="boxcategory">
 	<div id="title_category">
-    	<div class="cate1"><a href="">Tất Cả</a></div>
+    	<div class="cate1"><a href=""></a></div>
     </div>
+    <th:block th:each="product : ${products}">
     <div id="boxproduct" style="border-left:none">
-    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
+        <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
+    <div class="title"><label th:text="${product.name}"></label></div>
+    <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
     </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
+    </th:block>
 </div>
 <div id="boxcategory">
 	<div id="title_category">
     	<div class="cate1"><a href="">Tivi</a></div>
     </div>
-    <div id="boxproduct" style="border-left:none">
-    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
+        <th:block th:each="product : ${productType1}">
+            <div id="boxproduct" style="border-left:none">
+                <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
+                <div class="title"><label th:text="${product.name}"></label></div>
+                    <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+            </div>
+        </th:block>
 </div>
 <div id="boxcategory">
 	<div id="title_category">
     	<div class="cate1"><a href="">Tủ Lạnh</a></div>
     </div>
-    <div id="boxproduct" style="border-left:none">
-    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
+    <th:block th:each="product : ${productType2}">
+        <div id="boxproduct" style="border-left:none">
+            <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
+            <div class="title"><label th:text="${product.name}"></label></div>
+                <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+        </div>
+    </th:block>
 </div>
 <div id="boxcategory">
 	<div id="title_category">
     	<div class="cate1"><a href="">Máy Giặt</a></div>
     </div>
-    <div id="boxproduct" style="border-left:none">
-    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
+        <th:block th:each="product : ${productType3}">
+            <div id="boxproduct" style="border-left:none">
+                <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
+                <div class="title"><label th:text="${product.name}"></label></div>
+                    <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+            </div>
+        </th:block>
 </div>
 <div id="boxcategory">
 	<div id="title_category">
     	<div class="cate1"><a href="">Điều Hòa</a></div>
     </div>
-    <div id="boxproduct" style="border-left:none">
-    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-    <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
-    <div id="boxproduct">
-     <div class="image"><img src="http://themeviet.org/data/theme_tivi.jpg" /></div>
-    <div class="title"><a href="">TIVI LCD Sony KLV40BX420-40",Full HD</a></div>
-    <div class="price">100.000 VND</div>
-    </div>
+    <th:block th:each="product : ${productType4}">
+        <div id="boxproduct" style="border-left:none">
+            <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
+            <div class="title"><label th:text="${product.name}"></label></div>
+                <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+        </div>
+    </th:block>
 </div>
 
 </div>

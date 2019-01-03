@@ -4,6 +4,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Validated
@@ -31,11 +32,11 @@ public class Product {
     @NotEmpty(message = "không được để trống")
     private String detail;
 
-    @NotEmpty(message = "không được để trống")
-    private String unitPrice;
+    @NotNull(message = "không được để trống")
+    private Integer unitPrice;
 
-    @NotEmpty(message = "không được để trống")
-    private String promotionPrice;
+    @NotNull(message = "không được để trống")
+    private Integer promotionPrice;
 
     public ProductType getProductType() {
         return productType;
@@ -63,18 +64,6 @@ public class Product {
 
     public Product() {
 
-    }
-
-    public Product(@NotEmpty(message = "không được để trống") String name, String image, @NotEmpty(message = "không được để trống") String hot, @NotEmpty(message = "không được để trống") String size, @NotEmpty(message = "không được để trống") String detail, @NotEmpty(message = "không được để trống") String unitPrice, @NotEmpty(message = "không được để trống") String promotionPrice, Producer producer, ProductType productType) {
-        this.name = name;
-        this.image = image;
-        this.hot = hot;
-        this.size = size;
-        this.detail = detail;
-        this.unitPrice = unitPrice;
-        this.promotionPrice = promotionPrice;
-        this.producer = producer;
-        this.productType = productType;
     }
 
     public Integer getId() {
@@ -121,19 +110,19 @@ public class Product {
         this.detail = detail;
     }
 
-    public String getUnitPrice() {
+    public Integer getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(String unitPrice) {
+    public void setUnitPrice(Integer unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public String getPromotionPrice() {
+    public Integer getPromotionPrice() {
         return promotionPrice;
     }
 
-    public void setPromotionPrice(String promotionPrice) {
+    public void setPromotionPrice(Integer promotionPrice) {
         this.promotionPrice = promotionPrice;
     }
 
