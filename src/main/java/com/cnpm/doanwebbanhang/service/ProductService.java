@@ -21,4 +21,10 @@ public interface ProductService {
 
     Page<Product> findAllByProductType_Id(Long id, Pageable pageable);
 
+    Page<Product> findAllByUnitPriceLessThan(Integer number, Pageable pageable);
+
+    Page<Product> findAllByUnitPriceBetween(Integer pri1,Integer pri2,Pageable pageable);
+
+    Page<Product> findAllByHotContaining(String value, Pageable pageable);
+
 }

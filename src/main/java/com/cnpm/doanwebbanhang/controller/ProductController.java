@@ -107,7 +107,12 @@ public class ProductController {
     }
 
     @PostMapping("/edit-product")
-    public ModelAndView updateProduct(@ModelAttribute("product") Product product) {
+    public ModelAndView updateProduct(@ModelAttribute("product") Product product, @RequestParam("file") MultipartFile file) {
+        if (!file.isEmpty()) {
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+            product.setImage(timeStamp+file.getOriginalFilename());
+            storageService.store(file);
+        }
         productService.save(product);
         ModelAndView modelAndView = new ModelAndView("/product/edit");
         modelAndView.addObject("product", product);

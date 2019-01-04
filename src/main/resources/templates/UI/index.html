@@ -38,7 +38,7 @@
 	<div id="wrap" class="bgheader2">
               <ul class="sf-js-enabled sf-shadow" id="topmenu">
         <li class="active">
-        <a href="#" class="sf-with-ul">
+        <a th:href="@{/home}" class="sf-with-ul">
             Trang chủ<span class="sf-sub-indicator"> »</span></a>
         </li>
         <li class="">
@@ -182,7 +182,7 @@
 </div>
 <div id="boxcategory">
 	<div id="title_category">
-    	<div class="cate1"><a href="">Tivi</a></div>
+    	<div class="cate1"><a th:href="@{/choice-product-type/1}">Tivi</a></div>
     </div>
         <th:block th:each="product : ${productType1}">
             <div id="boxproduct" style="border-left:none">
@@ -194,7 +194,7 @@
 </div>
 <div id="boxcategory">
 	<div id="title_category">
-    	<div class="cate1"><a href="">Tủ Lạnh</a></div>
+    	<div class="cate1"><a th:href="@{/choice-product-type/2}">Tủ Lạnh</a></div>
     </div>
     <th:block th:each="product : ${productType2}">
         <div id="boxproduct" style="border-left:none">
@@ -206,7 +206,7 @@
 </div>
 <div id="boxcategory">
 	<div id="title_category">
-    	<div class="cate1"><a href="">Máy Giặt</a></div>
+    	<div class="cate1"><a th:href="@{/choice-product-type/3}">Máy Giặt</a></div>
     </div>
         <th:block th:each="product : ${productType3}">
             <div id="boxproduct" style="border-left:none">
@@ -218,7 +218,7 @@
 </div>
 <div id="boxcategory">
 	<div id="title_category">
-    	<div class="cate1"><a href="">Điều Hòa</a></div>
+    	<div class="cate1"><a th:href="@{/choice-product-type/4}">Điều Hòa</a></div>
     </div>
     <th:block th:each="product : ${productType4}">
         <div id="boxproduct" style="border-left:none">

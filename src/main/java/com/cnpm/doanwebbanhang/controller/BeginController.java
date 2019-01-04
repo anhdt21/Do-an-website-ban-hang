@@ -13,7 +13,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class BeginController {
@@ -52,6 +55,90 @@ public class BeginController {
         modelAndView.addObject("productType4", productType4);
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
+        return modelAndView;
+    }
+
+    @GetMapping("/choice-product-type/{id}")
+    public ModelAndView showFormProductType(@PageableDefault(size = 15) Pageable pageable, @PathVariable Long id) {
+        Page<Product> products = productService.findAllByProductType_Id(id, pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("UI/product_type");
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("products", products);
+        return modelAndView;
+    }
+
+    @GetMapping("/choice-producer/{id}")
+    public ModelAndView showFormProducer(@PageableDefault(size = 15) Pageable pageable, @PathVariable Long id) {
+        Page<Product> products = productService.findAllByProducer_Id(id, pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("UI/product_type");
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("products", products);
+        return modelAndView;
+    }
+
+    @GetMapping("/cost5")
+    public ModelAndView showProductcostless5(@PageableDefault(size = 20) Pageable pageable) {
+        Page<Product> products = productService.findAllByUnitPriceLessThan( 5000000, pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("UI/product_type");
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("products", products);
+        return modelAndView;
+    }
+
+    @GetMapping("/cost10")
+    public ModelAndView showProductcostless10(@PageableDefault(size = 20) Pageable pageable) {
+        Page<Product> products = productService.findAllByUnitPriceBetween( 5000000, 10000000, pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("UI/product_type");
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("products", products);
+        return modelAndView;
+    }
+
+    @GetMapping("/cost15")
+    public ModelAndView showProductcostless15(@PageableDefault(size = 20) Pageable pageable) {
+        Page<Product> products = productService.findAllByUnitPriceBetween( 10000000, 15000000, pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("UI/product_type");
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("products", products);
+        return modelAndView;
+    }
+
+    @GetMapping("/cost20")
+    public ModelAndView showProductcostless50(@PageableDefault(size = 20) Pageable pageable) {
+        Page<Product> products = productService.findAllByUnitPriceBetween( 15000000, 50000000, pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("UI/product_type");
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("products", products);
+        return modelAndView;
+    }
+
+    @GetMapping("/hot-product")
+    public ModelAndView showHotProduct(@PageableDefault(size = 20) Pageable pageable) {
+        Page<Product> products = productService.findAllByHotContaining( "1", pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("UI/hot_product");
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("products", products);
         return modelAndView;
     }
 }

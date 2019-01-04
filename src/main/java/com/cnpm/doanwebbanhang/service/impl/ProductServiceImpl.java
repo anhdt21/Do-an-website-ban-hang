@@ -49,4 +49,19 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllByProductType_Id(id, pageable);
 
     }
+
+    @Override
+    public Page<Product> findAllByUnitPriceLessThan(Integer number, Pageable pageable) {
+        return productRepository.findAllByUnitPriceLessThan(number, pageable);
+    }
+
+    @Override
+    public Page<Product> findAllByUnitPriceBetween(Integer pri1, Integer pri2, Pageable pageable) {
+        return productRepository.findAllByUnitPriceBetween(pri1, pri2, pageable);
+    }
+
+    @Override
+    public Page<Product> findAllByHotContaining(String value, Pageable pageable) {
+        return productRepository.findAllByHotContaining(value, pageable);
+    }
 }
