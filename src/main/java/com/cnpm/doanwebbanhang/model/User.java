@@ -28,14 +28,24 @@ public class User {
     private String birthDay;
     @Pattern(regexp = "^0[0-9]{9}$", message = "số điện thoại không đúng định dạng")
     private String phone;
-    @NotEmpty(message = "không được để trống")
-    private String role;
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_role_id")
+    public UserRole userRole;
 
     public User() {
 
     }
 
-    public User(String userName, String password, String name, String email, String address, String birthDay, String phone, String role) {
+    public User(@NotEmpty(message = "không được để trống") @Size(min = 4, max = 30, message = "tên từ 4 đến 30 ký tự") String userName, @NotEmpty(message = "không được để trống") String password, @NotEmpty(message = "không được để trống") String name, @Email @NotBlank(message = "email không được để trống") String email, @NotEmpty(message = "không được để trống") String address, @NotBlank(message = "không được để trống") String birthDay, @Pattern(regexp = "^0[0-9]{9}$", message = "số điện thoại không đúng định dạng") String phone, UserRole userRole) {
         this.userName = userName;
         this.password = password;
         this.name = name;
@@ -43,7 +53,7 @@ public class User {
         this.address = address;
         this.birthDay = birthDay;
         this.phone = phone;
-        this.role = role;
+        this.userRole = userRole;
     }
 
     public Long getId() {
@@ -110,11 +120,4 @@ public class User {
         this.phone = phone;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

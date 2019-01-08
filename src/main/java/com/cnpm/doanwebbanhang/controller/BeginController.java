@@ -36,7 +36,6 @@ public class BeginController {
         if (s == null) {
             products = productService.findAll(pageable);
         } else {
-
             products = productService.findAllByNameContaining(s, pageable);
         }
         long id1 = 1, id2 = 2, id3 = 3, id4 = 4;
@@ -55,7 +54,23 @@ public class BeginController {
         modelAndView.addObject("productType4", productType4);
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
+        if (products.isEmpty()) {
+            modelAndView.addObject("message", "Không tìm thấy sản phẩm");
+        }
         return modelAndView;
+    }
+
+    @GetMapping("/view-product/{id}")
+    public ModelAndView showViewProduct(@PageableDefault(size = 10) Pageable pageable ,@PathVariable Integer id) {
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        Optional<Product> product = productService.findById(id);
+        ModelAndView modelAndView = new ModelAndView("UI/view_product");
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("product", product.get());
+        return modelAndView;
+
     }
 
     @GetMapping("/choice-product-type/{id}")
@@ -67,6 +82,9 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        if (products.isEmpty()) {
+            modelAndView.addObject("message", "Không có sản phẩm nào");
+        }
         return modelAndView;
     }
 
@@ -79,6 +97,9 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        if (products.isEmpty()) {
+            modelAndView.addObject("message", "Không có sản phẩm nào");
+        }
         return modelAndView;
     }
 
@@ -91,6 +112,9 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        if (products.isEmpty()) {
+            modelAndView.addObject("message", "Không có sản phẩm nào");
+        }
         return modelAndView;
     }
 
@@ -103,6 +127,9 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        if (products.isEmpty()) {
+            modelAndView.addObject("message", "Không có sản phẩm nào");
+        }
         return modelAndView;
     }
 
@@ -115,6 +142,9 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        if (products.isEmpty()) {
+            modelAndView.addObject("message", "Không có sản phẩm nào");
+        }
         return modelAndView;
     }
 
@@ -127,6 +157,9 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        if (products.isEmpty()) {
+            modelAndView.addObject("message", "Không có sản phẩm nào");
+        }
         return modelAndView;
     }
 

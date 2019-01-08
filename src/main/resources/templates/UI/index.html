@@ -172,6 +172,11 @@
 	<div id="title_category">
     	<div class="cate1"><a href=""></a></div>
     </div>
+	<div style="margin-top: 45px">
+		<th:block th:if="${message}">
+			<h2><p th:text="${message}" style="color: red"></p></h2>
+		</th:block>
+	</div>
     <th:block th:each="product : ${products}">
     <div id="boxproduct" style="border-left:none">
         <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>

@@ -1,5 +1,6 @@
 package com.cnpm.doanwebbanhang;
 
+import com.cnpm.doanwebbanhang.formatter.UserRoleFormatter;
 import com.cnpm.doanwebbanhang.service.*;
 import com.cnpm.doanwebbanhang.service.impl.*;
 import com.cnpm.doanwebbanhang.storage.StorageProperties;
@@ -9,6 +10,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
@@ -20,6 +25,24 @@ public class DoAnWebBanHangApplication {
             //storageService.deleteAll();
             storageService.init();
         };
+    }
+
+    @Configuration
+    static class MyConfig extends WebMvcConfigurerAdapter {
+        @Override
+        public void addFormatters(FormatterRegistry registry) {
+            registry.addFormatter(new UserRoleFormatter());
+        }
+    }
+    @Bean
+    public UserRoleService userRoleService() {
+        return new UserRoleServiceImpl();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
     }
 
     @Bean

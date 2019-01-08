@@ -103,9 +103,6 @@
 									Tìm kiếm :
 									<input type="text" name="s">
 									<input type="submit" value="Search">
-									<p>
-										<a href="/create-user">Thêm Người Dùng mới</a>
-									</p>
 								</form><br/>
 							</div>
 							<div class="content table-responsive table-full-width">
@@ -119,8 +116,6 @@
 									<th>Địa Chỉ</th>
 									<th>Ngày Sinh</th>
 									<th>Số Điện Thoại</th>
-									<th>Vai Trò</th>
-									<th>Sửa</th>
 									<th>Xóa</th>
 									</thead>
 									<tbody>
@@ -134,8 +129,6 @@
 											<td th:text="${user.address}"></td>
 											<td th:text="${user.birthDay}"></td>
 											<td th:text="${user.phone}"></td>
-											<td th:text="${user.role}"></td>
-											<td><a th:href="@{/edit-user/__${user.id}__ }">Sửa</a></td>
 											<td><a th:href="@{/delete-user/__${user.id}__ }">Xóa</a></td>
 										</tr>
 									</th:block>

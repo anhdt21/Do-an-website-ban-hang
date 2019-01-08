@@ -112,7 +112,7 @@
                                     <input th:type="hidden" name="id" th:field="*{id}">
                                     <tr>
                                         <td>Tên Đăng Nhập:</td>
-                                        <td><input type="text" th:field="*{name}"/></td>
+                                        <td><input type="text" th:field="*{userName}"/></td>
                                         <td><input type="text" th:field="*{password}" hidden/></td>
                                     </tr>
                                     <tr>
@@ -134,13 +134,8 @@
                                     <tr>
                                         <td>Số Điện Thoại</td>
                                         <td><input type="text" th:field="*{phone}"></td>
+                                        <td><input type="text" th:field="*{user_roles}"></td>
                                     </tr>
-
-                                    <tr>
-                                        <td>Role</td>
-                                        <td><input type="text" th:field="*{role}"></td>
-                                    </tr>
-
                                     <tr>
                                         <td></td>
                                         <td><input type="submit" value="Update"></td>
