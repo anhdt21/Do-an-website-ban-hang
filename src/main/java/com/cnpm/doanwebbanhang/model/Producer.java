@@ -19,7 +19,7 @@ public class Producer {
         this.productList = productList;
     }
 
-    @OneToMany(targetEntity = Product.class)
+    @OneToMany(targetEntity = Product.class, mappedBy = "producer")
     private List<Product> productList;
 
     public Producer() {

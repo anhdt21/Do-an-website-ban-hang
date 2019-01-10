@@ -137,7 +137,7 @@
             </div>
             <div style="margin-top: 50px">
                 <th:block th:if="${message}">
-                    <h2><p th:text="${message}" style="color: red"></p></h2>
+                    <h2><p th:text="${message}" style="color: blue"></p></h2>
                 </th:block>
             </div>
 
@@ -146,6 +146,8 @@
                     <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
                         <div class="title"><label th:text="${product.name}"></label></div>
                         <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+                    <div style="color: blue; text-align: center" th:if="${not #strings.startsWith(product.promotionPrice,'0')}">đang giảm giá</div></a>
+
                 </div>
             </th:block>
         </div>

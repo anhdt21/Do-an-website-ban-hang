@@ -174,7 +174,7 @@
     </div>
 	<div style="margin-top: 45px">
 		<th:block th:if="${message}">
-			<h2><p th:text="${message}" style="color: red"></p></h2>
+			<h2><p th:text="${message}" style="color: blue"></p></h2>
 		</th:block>
 	</div>
     <th:block th:each="product : ${products}">
@@ -182,56 +182,24 @@
         <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
     <div class="title"><label th:text="${product.name}"></label></div>
     <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+    <div style="color: blue; text-align: center" th:if="${not #strings.startsWith(product.promotionPrice,'0')}">đang giảm giá</div></a>
     </div>
     </th:block>
 </div>
-<div id="boxcategory">
+
+<div id="boxcategory" th:each="productType : ${productTypes}">
 	<div id="title_category">
-    	<div class="cate1"><a th:href="@{/choice-product-type/1}">Tivi</a></div>
+    	<div class="cate1"><a th:href="@{/choice-product-type/__${productType.id}__}"><label th:text="${productType.name}"></label></a></div>
     </div>
-        <th:block th:each="product : ${productType1}">
+        <th:block th:each="product : ${productType.productList}">
             <div id="boxproduct" style="border-left:none">
                 <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
                 <div class="title"><label th:text="${product.name}"></label></div>
                     <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+                <div style="color: blue; text-align: center" th:if="${not #strings.startsWith(product.promotionPrice,'0')}">đang giảm giá</div></a>
+
             </div>
         </th:block>
-</div>
-<div id="boxcategory">
-	<div id="title_category">
-    	<div class="cate1"><a th:href="@{/choice-product-type/2}">Tủ Lạnh</a></div>
-    </div>
-    <th:block th:each="product : ${productType2}">
-        <div id="boxproduct" style="border-left:none">
-            <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
-            <div class="title"><label th:text="${product.name}"></label></div>
-                <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
-        </div>
-    </th:block>
-</div>
-<div id="boxcategory">
-	<div id="title_category">
-    	<div class="cate1"><a th:href="@{/choice-product-type/3}">Máy Giặt</a></div>
-    </div>
-        <th:block th:each="product : ${productType3}">
-            <div id="boxproduct" style="border-left:none">
-                <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
-                <div class="title"><label th:text="${product.name}"></label></div>
-                    <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
-            </div>
-        </th:block>
-</div>
-<div id="boxcategory">
-	<div id="title_category">
-    	<div class="cate1"><a th:href="@{/choice-product-type/4}">Điều Hòa</a></div>
-    </div>
-    <th:block th:each="product : ${productType4}">
-        <div id="boxproduct" style="border-left:none">
-            <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
-            <div class="title"><label th:text="${product.name}"></label></div>
-                <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
-        </div>
-    </th:block>
 </div>
 
 </div>

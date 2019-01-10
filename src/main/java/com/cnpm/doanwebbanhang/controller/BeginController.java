@@ -38,20 +38,12 @@ public class BeginController {
         } else {
             products = productService.findAllByNameContaining(s, pageable);
         }
-        long id1 = 1, id2 = 2, id3 = 3, id4 = 4;
-        Page<Product> productType1 = productService.findAllByProductType_Id(id1, pageable);
-        Page<Product> productType2 = productService.findAllByProductType_Id(id2, pageable);
-        Page<Product> productType3 = productService.findAllByProductType_Id(id3, pageable);
-        Page<Product> productType4 = productService.findAllByProductType_Id(id4, pageable);
+
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
 
         ModelAndView modelAndView = new ModelAndView("UI/index");
         modelAndView.addObject("products", products);
-        modelAndView.addObject("productType1", productType1);
-        modelAndView.addObject("productType2", productType2);
-        modelAndView.addObject("productType3", productType3);
-        modelAndView.addObject("productType4", productType4);
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         if (products.isEmpty()) {

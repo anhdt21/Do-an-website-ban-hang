@@ -144,62 +144,55 @@
 								</div>
 							</td>
 							<td>
-								<div style="width: 300px; height: 200px; margin-top: 40px; margin-right: 60px;">
-									<table class="table table-hover table-striped">
+								<div style="width: 420px; height: 200px; margin-top: 40px; margin-right: 60px;">
+									<table class="table table-hover table-striped" style="font-size:17px; text-align: center">
 										<input th:type="hidden" name="id" th:field="*{id}">
 										<tr>
 											<td></td>
 										</tr>
 										<tr>
-											<td>Name</td>
-											<td><input type="text" th:field="*{name}" disabled="disabled"></td>
+											<td style="color: #0a61a6">Tên sản phẩm: </td>
+											<td><label th:text="${product.name}"></label></td>
 										</tr>
 										<tr>
-											<td>Size</td>
-											<td><input type="text" th:field="*{size}" disabled="disabled"></td>
+											<td style="color: #0a61a6">Size:</td>
+											<td><label th:text="${product.size}"></label></td>
 										</tr>
 										<tr>
-											<td>Sản Phẩm Hot</td>
-											<td><input type="text" th:field="*{hot}" disabled="disabled"></td>
+											<td style="color: #0a61a6">Chi tiết:</td>
+											<td><label th:text="${product.detail}"></label></td>
 										</tr>
 										<tr>
-											<td>Chi tiết</td>
-											<td><input type="text" th:field="*{detail}" disabled="disabled"></td>
+											<td style="color: #0a61a6">Giá Sản Phẩm:</td>
+											<td><label style="color: red" th:text="${product.unitPrice}+' VNĐ'"></label></td>
+										</tr>
+										<tr th:if="${not #strings.startsWith(product.promotionPrice,'0')}">
+											<td style="color: #0a61a6">Giá Khuyến Mãi:</td>
+											<td><label style="color:blue" th:text="${product.promotionPrice}+' VNĐ'"></label></td>
 										</tr>
 										<tr>
-											<td>Giá Sản Phảm</td>
-											<td><input type="text" th:field="*{unitPrice}" disabled="disabled"></td>
-										</tr>
-										<tr>
-											<td>Giá Khuyến Mãi(nếu có)</td>
-											<td><input type="text" th:field="*{promotionPrice}" disabled="disabled"></td>
-										</tr>
-										<tr>
-											<td>Loại Sản Phẩm</td>
+											<td style="color: #0a61a6">Loại Sản Phẩm:</td>
 											<td>
-												<select th:field="*{productType}"} style="width: 100%;" disabled>
-													<option th:each="productType : ${productTypes}" th:value="${productType.id}" th:text="${productType.name}">
-
-													</option>
-												</select>
+												<label th:text="${product.productType.name}"} style="">
+												</label>
 											</td>
 										</tr>
 										<tr>
-											<td>Nhà Sản Xuất</td>
+											<td style="color: #0a61a6">Nhà Sản Xuất:</td>
 											<td>
-												<select th:field="*{producer}"} style="width: 100%;" disabled="disabled">
-													<option th:each="producer : ${producers}" th:value="${producer.id}" th:text="${producer.name}">
-
-													</option>
-												</select>
+												<label th:text="${product.producer.name}"} style="" >
+												</label>
 											</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td><input type="submit" value="Mua Sản Phẩm"></td>
 										</tr>
 									</table>
 								</div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+
+								<a th:href="@{/addtocard/__${product.id}__}" class="add-cart item_add"><div style=" font-size:20px;"><img th:src="@{/images/shop2.jpg}" height="50" width="50"/>Thêm vào giỏ hàng</div></a>
 							</td>
 						</tr>
 					</table>
