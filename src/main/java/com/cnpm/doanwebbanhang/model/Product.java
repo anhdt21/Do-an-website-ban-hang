@@ -54,6 +54,18 @@ public class Product {
     @JoinColumn(name = "idProductType")
     private ProductType productType;
 
+    @OneToOne(targetEntity = Item.class)
+    private Item item;
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+
     public Producer getProducer() {
         return producer;
     }

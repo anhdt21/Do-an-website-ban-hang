@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -40,6 +41,18 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "user_role_id")
     public UserRole userRole;
+
+    @OneToMany(targetEntity = Order.class)
+    private List<Order> orders;
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
 
     public User() {
 

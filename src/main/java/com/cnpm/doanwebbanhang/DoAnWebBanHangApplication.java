@@ -80,6 +80,16 @@ public class DoAnWebBanHangApplication {
         return new ProducerServiceImpl();
     }
 
+    @Bean
+    public ItemService itemService() {
+        return new ItemServiceImpl();
+    }
+
+    @Bean
+    public OrderService orderService() {
+        return new OrderServiceImpl();
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(DoAnWebBanHangApplication.class, args);
     }

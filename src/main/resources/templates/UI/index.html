@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Home Page</title>
 <link th:href="@{/UI/style.css}" rel="stylesheet" type="text/css" />
-
-
+	<script src="admin/js/simpleCart.min.js"> </script>
+    <link rel="stylesheet" th:href="@{/admin/css/bootstrap.min.css}">
 
 </head>
 
@@ -14,19 +14,39 @@
 <div id="header">
 	<div class="logo"><img th:src="@{/images/logo-tuananh.jpg}" height="40" width="100"/></div>
     <div class="right">
-        <div style="float:left; width:600px; padding-top:10px;">
-        <div id="formsearch">
-        <form>
-        <input type="text" name="s" class="inputsearch" />
-        <input type="submit" class="search" value="Tìm kiếm"/>
-        </form>
+        <div style="float: left; width:500px; padding-top:10px;">
+            <a href="/checkout">
+                <div class="total">
+                    <span class="simpleCart_total"></span></div>
+                <div style="float: right; padding-left:10px; padding-top:5px; font-size:12px; font-weight:bold">Giỏ hàng</div>
+                <div style="float: right; padding-left:50px"><img th:src="@{/images/giohang.jpg}" /></div>
+            </a>
         </div>
-            <a href="#"><div style="float:left; padding-left:50px"><img th:src="@{/images/giohang.jpg}" /></div></a>
-            <a href="#"><div style="float:left; padding-left:10px; padding-top:5px; font-size:12px; font-weight:bold">Giỏ hàng</div></a>
-            <a href="#"><div style="float:left;margin-left: 45px; padding-left:10px; padding-top:5px; font-size:12px; font-weight:bold">Đăng Nhập/ Đăng ký</div></a>
+        <div style="float: right; font-size:12px; font-weight:bold">
+            <div class="topbar">
+                <ul>
+                    <!--<li class="phoneNo"><i class="fa fa-phone"></i>0123 45678910</li>-->
+                    <li class="dropdown language"  th:if="${#request.userPrincipal}">
+                        <a th:href="@{/logout}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span>xin chào: </span>
+                            <i class="fa fa-caret-down" th:text="${#request.userPrincipal.getName()}"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><i class="fa fa-sign-out" aria-hidden="true"></i><a th:href="@{/logout}">Log out</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" th:if="${#request.userPrincipal} == null">
+                        <a th:href="@{/login}" class="dropdown-toggle" data-toggle="modal" data-target=".mode" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Login / Registration</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        
     </div>
+        
+
 <div style="clear:both"></div>
 </div>
 <div id="menubg">
@@ -171,6 +191,12 @@
 <div id="boxcategory">
 	<div id="title_category">
     	<div class="cate1"><a href=""></a></div>
+        <div class="cate2">
+            <form>
+                <input type="text" name="s" class="inputsearch" />
+                <input type="submit" class="search" value="Tìm kiếm"/>
+            </form>
+        </div>
     </div>
 	<div style="margin-top: 45px">
 		<th:block th:if="${message}">
@@ -183,6 +209,7 @@
     <div class="title"><label th:text="${product.name}"></label></div>
     <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
     <div style="color: blue; text-align: center" th:if="${not #strings.startsWith(product.promotionPrice,'0')}">đang giảm giá</div></a>
+	    <a th:href="@{/addtocard/__${product.id}__}"><div style="color: black; text-align: center"><img th:src="@{/images/giohang.jpg}" />thêm vào giỏ</div></a>
     </div>
     </th:block>
 </div>
@@ -196,8 +223,9 @@
                 <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
                 <div class="title"><label th:text="${product.name}"></label></div>
                     <div class="price"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
-                <div style="color: blue; text-align: center" th:if="${not #strings.startsWith(product.promotionPrice,'0')}">đang giảm giá</div></a>
-
+                <div style="color: blue; text-align: center" th:if="${not #strings.startsWith(product.promotionPrice,'0')}">đang giảm giá</div>
+	            </a>
+	            <a th:href="@{/addtocard/__${product.id}__}"><div style="color: black; text-align: center"><img th:src="@{/images/giohang.jpg}" />thêm vào giỏ</div></a>
             </div>
         </th:block>
 </div>

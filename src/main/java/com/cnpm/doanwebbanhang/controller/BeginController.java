@@ -1,8 +1,6 @@
 package com.cnpm.doanwebbanhang.controller;
 
-import com.cnpm.doanwebbanhang.model.Producer;
-import com.cnpm.doanwebbanhang.model.Product;
-import com.cnpm.doanwebbanhang.model.ProductType;
+import com.cnpm.doanwebbanhang.model.*;
 import com.cnpm.doanwebbanhang.service.ProducerService;
 import com.cnpm.doanwebbanhang.service.ProductService;
 import com.cnpm.doanwebbanhang.service.ProductTypeService;
@@ -16,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
@@ -49,6 +49,43 @@ public class BeginController {
         if (products.isEmpty()) {
             modelAndView.addObject("message", "Không tìm thấy sản phẩm");
         }
+        return modelAndView;
+    }
+
+    @GetMapping("/checkout")
+    public ModelAndView showShop(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("order") == null){
+            Page<Producer> producers = producerService.findAll(pageable);
+            Page<ProductType> productTypes = productTypeService.findAll(pageable);
+            ModelAndView modelAndView = new ModelAndView("UI/index", "message","Giỏ hàng trống !");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            return modelAndView;
+        }
+        Page<Product> products = productService.findAll(pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("UI/checkout");
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("products", products);
+        return modelAndView;
+    }
+
+    @GetMapping("/save-customer")
+    public ModelAndView newRegister(@PageableDefault(size = 10) Pageable pageable ,
+                                    @ModelAttribute("customer") Customer customer,
+                                    @ModelAttribute("order") Order order, HttpServletRequest request) {
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("UI/buy_products");
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+
+        HttpSession session = request.getSession();
+//        Order order = (Order) session.getAttribute("order");
+        modelAndView.addObject("customer", customer);
         return modelAndView;
     }
 

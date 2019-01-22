@@ -23,7 +23,7 @@ body{margin:auto; padding:auto; background:url(images/linen.png); font-family:Ar
 #title_category .cate1 a{display:block; padding-left:15px; padding-top:6px; font-size:12px; color:#FFF; font-weight:bold;}
 #title_category .cate2{ float:left; height:23px; padding-left:5px; padding-top:6px; }
 #title_category .cate2 a{ display:block; float:left; font-size:12px; color:#0c93d7; padding-left:10px; padding-right:10px}
-#boxproduct { float:left; margin-top:10px; width:195px;border-left:dashed 1px #CCC; height:200px;}
+#boxproduct { float:left; margin-top:10px; width:195px;border-left:dashed 1px #CCC; height:220px;}
 #boxproduct .image{ margin:auto; width:160px; height:120px; }
 #boxproduct .image img{  width:160px; height:120px; border:0px }
 #boxproduct .title{ float:left; width:180px; padding-left:5px; padding-right:4px; height:30px; text-align:center}

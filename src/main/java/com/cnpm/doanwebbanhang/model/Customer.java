@@ -1,6 +1,7 @@
 package com.cnpm.doanwebbanhang.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
@@ -9,24 +10,16 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
     private String email;
-    private String gender;
     private String address;
     private String phone;
-    private String note;
+
+    @OneToMany(targetEntity = Order.class, mappedBy = "customer")
+    private List<Order> orders;
 
     public Customer() {
-
-    }
-
-    public Customer(String name, String email, String gender, String address, String phone, String note) {
-        this.name = name;
-        this.email = email;
-        this.gender = gender;
-        this.address = address;
-        this.phone = phone;
-        this.note = note;
     }
 
     public Long getId() {
@@ -53,14 +46,6 @@ public class Customer {
         this.email = email;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -77,11 +62,19 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getNote() {
-        return note;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Customer(String name, String email, String address, String phone, List<Order> orders) {
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
+        this.orders = orders;
     }
 }

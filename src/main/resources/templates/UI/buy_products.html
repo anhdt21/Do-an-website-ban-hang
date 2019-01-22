@@ -2,10 +2,8 @@
 <html xmlns:th="http:www.thymeleaf.org">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Sản Phẩm</title>
+	<title>Xác nhận</title>
 	<link th:href="@{/UI/style.css}" rel="stylesheet" type="text/css" />
-
-
 
 </head>
 
@@ -22,7 +20,7 @@
 					<div style="float: right; padding-left:50px"><img th:src="@{/images/giohang.jpg}" /></div>
 				</a>
 			</div>
-			<div style="float: right;; font-size:12px; font-weight:bold">
+			<div style="float: right; font-size:12px; font-weight:bold">
 				<div class="topbar">
 					<ul>
 						<!--<li class="phoneNo"><i class="fa fa-phone"></i>0123 45678910</li>-->
@@ -152,71 +150,35 @@
 
 	<div id="bong"></div>
 	<div id="home">
-		<div id="boxcategory" style="height: 500px; border-color: black;">
+		<div id="boxcategory">
 			<div id="title_category">
-				<div class="cate1"><a href=""></a></div>
-			</div>
-			<div>
-				<form th:action="@{/}" th:object="${product}" method="post">
-					<table>
-						<tr>
-							<td>
-								<div style="width: 350px; height: 200px; margin-top: 40px; margin-left: 60px;">
-									<img th:src="@{/__${product.image}__}" height="200" width="300">
-								</div>
-							</td>
-							<td>
-								<div style="width: 420px; height: 200px; margin-top: 40px; margin-right: 60px;">
-									<table class="table table-hover table-striped" style="font-size:17px; text-align: center">
-										<input th:type="hidden" name="id" th:field="*{id}">
-										<tr>
-											<td></td>
-										</tr>
-										<tr>
-											<td style="color: #0a61a6">Tên sản phẩm: </td>
-											<td><label th:text="${product.name}"></label></td>
-										</tr>
-										<tr>
-											<td style="color: #0a61a6">Size:</td>
-											<td><label th:text="${product.size}"></label></td>
-										</tr>
-										<tr>
-											<td style="color: #0a61a6">Chi tiết:</td>
-											<td><label th:text="${product.detail}"></label></td>
-										</tr>
-										<tr>
-											<td style="color: #0a61a6">Giá Sản Phẩm:</td>
-											<td><label style="color: red" th:text="${product.unitPrice}+' VNĐ'"></label></td>
-										</tr>
-										<tr th:if="${not #strings.startsWith(product.promotionPrice,'0')}">
-											<td style="color: #0a61a6">Giá Khuyến Mãi:</td>
-											<td><label style="color:blue" th:text="${product.promotionPrice}+' VNĐ'"></label></td>
-										</tr>
-										<tr>
-											<td style="color: #0a61a6">Loại Sản Phẩm:</td>
-											<td>
-												<label th:text="${product.productType.name}"} style="">
-												</label>
-											</td>
-										</tr>
-										<tr>
-											<td style="color: #0a61a6">Nhà Sản Xuất:</td>
-											<td>
-												<label th:text="${product.producer.name}"} style="" >
-												</label>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td>
+				<div class="cate1"></div>
 
-								<a th:href="@{/addtocard/__${product.id}__}" class="add-cart item_add"><div style=" font-size:20px;"><img th:src="@{/images/shop2.jpg}" height="50" width="50"/>Thêm vào giỏ hàng</div></a>
-							</td>
+			</div>
+			<div class="in-check" >
+				<form th:action="@{/save-order}" th:object="${customer}" method="post">
+					<!--<input type="hidden" th:field="*{customer.id}">-->
+					<table class="table table-hover table-striped" id="res">
+
+						<tr>
+							<td>Name:</td>
+							<td><input type="text" th:field="*{name}"/></td>
 						</tr>
+						<tr>
+							<td>Email:</td>
+							<td><input type="text" th:field="*{email}"/></td>
+						</tr>
+						<tr>
+							<td>Address:</td>
+							<td><input type="text" th:field="*{address}"/></td>
+						</tr>
+						<tr>
+							<td>Phone:</td>
+							<td><input type="text" th:field="*{phone}"/></td>
+						</tr>
+						<div style="margin-top: 50px; margin-left: 50px; text-align: right"  >
+							<input type="submit" value="Xác Nhận Mua Hàng">
+						</div>
 					</table>
 				</form>
 			</div>
@@ -226,7 +188,7 @@
 
 	<div style="clear:both"></div>
 </div>
-<div id="ft" style=" margin-top: 130px">
+<div id="ft" style=" margin-top: 500px">
 	<div style=" margin:auto; width: 1000px;">
 		<div id="ftnews">
 			<table width="1000" border="0" cellspacing="0" cellpadding="0">
