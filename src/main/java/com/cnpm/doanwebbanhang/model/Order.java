@@ -14,7 +14,9 @@ public class Order {
 
     private String dateOrder;
 
-    private int status;
+    private int status = 0;
+
+    private int payed = 0;
 
     @Column(name = "dateOrder")
     public String getDateOrder() {
@@ -34,6 +36,14 @@ public class Order {
 //    private User user;
 
     public Order() {
+    }
+
+    public int getPayed() {
+        return payed;
+    }
+
+    public void setPayed(int payed) {
+        this.payed = payed;
     }
 
     public Integer getId() {

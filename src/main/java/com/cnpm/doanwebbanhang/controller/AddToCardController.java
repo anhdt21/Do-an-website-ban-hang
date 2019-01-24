@@ -50,17 +50,19 @@ public class AddToCardController {
             Order order = new Order();
             List<Item> items = new ArrayList<Item>();
             Item item = new Item();
+            item.setId(id);
             item.setProduct(product.get());
             item.setQuantity(quantity);
             item.setPrice(product.get().getUnitPrice());
             items.add(item);
             order.setItems(items);
             session.setAttribute("order", order);
+
         } else {
             Order order = (Order) session.getAttribute("order");
             List<Item> items = order.getItems();
             boolean check = false;
-            for (Item item: items) {
+            for (Item item : items) {
                 if (item.getProduct().getId() == product.get().getId()) {
                     item.setQuantity(item.getQuantity() + 1);
                     check = true;
@@ -68,20 +70,44 @@ public class AddToCardController {
             }
             if (check == false) {
                 Item item = new Item();
+                item.setId(id);
                 item.setQuantity(quantity);
                 item.setPrice(product.get().getUnitPrice());
                 item.setProduct(product.get());
                 items.add(item);
             }
-            session.setAttribute("order",order);
+            session.setAttribute("order", order);
         }
         ModelAndView modelAndView = new ModelAndView("redirect:/home");
         modelAndView.addObject("session", session);
         return modelAndView;
     }
 
+    @GetMapping("/remove-item/{id}")
+    public ModelAndView removeItem(HttpServletRequest request, @PathVariable("id") Integer id) {
+        HttpSession session = request.getSession();
+        Order order = (Order) session.getAttribute("order");
+        List<Item> items = order.getItems();
+        if (items.size() != 0) {
+            try {
+                for (Item item : items) {
+                    if (item.getId() == id) {
+                        items.remove(item);
+                    }
+                }
+            } catch (ConcurrentModificationException e) {
+                System.out.println("Ơ. Lỗi");
+            }
+        }
+        order.setItems(items);
+        session.setAttribute("order", order);
+        ModelAndView modelAndView = new ModelAndView("redirect:/checkout");
+//        modelAndView.addObject("session", session);
+        return modelAndView;
+    }
+
     @PostMapping("/save-order")
-    public ModelAndView saveOrder(HttpServletRequest request,@ModelAttribute Customer customer) {
+    public ModelAndView saveOrder(HttpServletRequest request, @ModelAttribute Customer customer) {
         HttpSession session = request.getSession();
         Order order = (Order) session.getAttribute("order");
         List<Item> items = (List<Item>) ((Order) session.getAttribute("order")).getItems();
@@ -89,8 +115,8 @@ public class AddToCardController {
         customerService.save(customer);
         order.setCustomer(customer);
         Date date = new Date();
-        String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(date);
-        order.setDateOrder(timeStamp);
+        String currentTime = new SimpleDateFormat("dd/MM/yyyy").format(date);
+        order.setDateOrder(currentTime);
         orderService.save(order);
 
         for (Item item : items) {

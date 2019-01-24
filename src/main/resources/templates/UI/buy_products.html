@@ -152,33 +152,40 @@
 	<div id="home">
 		<div id="boxcategory">
 			<div id="title_category">
-				<div class="cate1"></div>
+				<div class="cate1"><a href="#">Nhập thông tin</a></div>
 
 			</div>
-			<div class="in-check" >
+			<div style="float: left; margin-left: 300px" >
 				<form th:action="@{/save-order}" th:object="${customer}" method="post">
 					<!--<input type="hidden" th:field="*{customer.id}">-->
 					<table class="table table-hover table-striped" id="res">
-
 						<tr>
-							<td>Name:</td>
-							<td><input type="text" th:field="*{name}"/></td>
+							<td>
+								<table class="table table-hover table-striped">
+									<tr>
+										<td>Họ tên:</td>
+										<td><input type="text" th:field="*{name}"/></td>
+									</tr>
+									<tr>
+										<td>Email:</td>
+										<td><input type="text" th:field="*{email}"/></td>
+									</tr>
+									<tr>
+										<td>Địa chỉ:</td>
+										<td><input type="text" th:field="*{address}"/></td>
+									</tr>
+									<tr>
+										<td>SĐT:</td>
+										<td><input type="text" th:field="*{phone}"/></td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<div style="margin-top: 50px; margin-left: 50px; text-align: right"  >
+									<input type="submit" value="Xác Nhận Mua Hàng">
+								</div>
+							</td>
 						</tr>
-						<tr>
-							<td>Email:</td>
-							<td><input type="text" th:field="*{email}"/></td>
-						</tr>
-						<tr>
-							<td>Address:</td>
-							<td><input type="text" th:field="*{address}"/></td>
-						</tr>
-						<tr>
-							<td>Phone:</td>
-							<td><input type="text" th:field="*{phone}"/></td>
-						</tr>
-						<div style="margin-top: 50px; margin-left: 50px; text-align: right"  >
-							<input type="submit" value="Xác Nhận Mua Hàng">
-						</div>
 					</table>
 				</form>
 			</div>
@@ -188,7 +195,7 @@
 
 	<div style="clear:both"></div>
 </div>
-<div id="ft" style=" margin-top: 500px">
+<div id="ft" style=" margin-top: 300px">
 	<div style=" margin:auto; width: 1000px;">
 		<div id="ftnews">
 			<table width="1000" border="0" cellspacing="0" cellpadding="0">
