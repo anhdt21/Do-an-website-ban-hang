@@ -106,32 +106,24 @@
 									<th>STT</th>
 									<th>Mã Đơn Hàng</th>
 									<th>Ngày Đặt Hàng</th>
-									<th>ID Khách Hàng</th>
+									<th>Tên Khách Hàng</th>
 									<th>Trạng Thái</th>
-									<th>Thanh Toán</th>
-									<th>Chi Tiết</th>
+									<th>Xóa</th>
 									</thead>
 									<tbody>
-									<th:block th:each="bill, istart : ${bills}">
+									<th:block th:each="bill, istart : ${orders}">
 										<tr>
 											<td th:text="${istart.index+1}"></td>
-											<td th:text="${bill.id}"></td>
+											<td><a th:href="@{/edit-bill/__${bill.id}__}"><span th:text="${bill.id}"></span></a></td>
 											<td th:text="${bill.dateOrder}"></td>
-											<td th:text="${bill.customer.id}"></td>
-											<td th:if="${not #strings.startsWith(bill.status,'1')}"><span style="color: red">Chưa xử lý</span></td>
-											<td th:if="${not #strings.startsWith(bill.status,'0')}"><span style="color: blue">Đã xử lý</span></td>
-											<td th:if="${not #strings.startsWith(bill.payed,'1')}"><span style="color: red">Chưa thanh toán</span></td>
-											<td th:if="${not #strings.startsWith(bill.payed,'0')}"><span style="color: blue">Đã thanh toán</span></td>
-											<td><a th:href="@{/edit-bill/__${bill.id}__}">detail</a></td>
+											<td th:text="${bill.customer.name}"></td>
+											<td th:if="${not #strings.startsWith(bill.status,'Đ')}"><a th:href="@{/processed/__${bill.id}__}"><span th:text="${bill.status}" style="color: red"></span></a></td>
+											<td th:if="${not #strings.startsWith(bill.status,'C')}"><a th:href="@{/processing/__${bill.id}__}"><span th:text="${bill.status}" style="color: blue"></span></a></td>
+											<td><a onclick="myFunction()" th:href="@{/delete-bill/__${bill.id}__}">Xóa</a></td>
 										</tr>
 									</th:block>
 									</tbody>
 								</table>
-								<div>
-									<a th:href="@{'/bills'(page=${bills.number - 1})}" th:if="${bills.hasPrevious()}">Previous</a>
-									<span th:text="${bills.number + 1}"></span>/<span th:text="${bills.totalPages}"></span>
-									<a th:href="@{'/bills'(page=${bills.number + 1})}" th:if="${bills.hasNext()}">Next</a>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -139,7 +131,11 @@
 			</div>
 		</div>
 	</div>	<!--/.main-->
-	
+	<script>
+        function myFunction() {
+                alert("Xóa đơn hàng !");
+        }
+	</script>
 	<script th:src="@{/admin/js/jquery-1.11.1.min.js}"></script>
 	<script th:src="@{/admin/js/bootstrap.min.js}"></script>
 	<script th:src="@{/admin/js/chart.min.js}"></script>

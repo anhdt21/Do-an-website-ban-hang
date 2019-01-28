@@ -14,9 +14,16 @@ public class Order {
 
     private String dateOrder;
 
-    private int status = 0;
+    private String status;
 
-    private int payed = 0;
+    @Column(name = "status", nullable = false)
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     @Column(name = "dateOrder")
     public String getDateOrder() {
@@ -38,14 +45,6 @@ public class Order {
     public Order() {
     }
 
-    public int getPayed() {
-        return payed;
-    }
-
-    public void setPayed(int payed) {
-        this.payed = payed;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -60,14 +59,6 @@ public class Order {
 
     public void setItems(List<Item> items) {
         this.items = items;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public Customer getCustomer() {

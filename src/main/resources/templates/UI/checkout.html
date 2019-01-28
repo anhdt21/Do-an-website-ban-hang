@@ -4,7 +4,41 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Sản Phẩm</title>
 	<link th:href="@{/UI/style.css}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" th:href="@{/admin/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/admin/css/bootstrap-table.css}">
+	<link rel="stylesheet" th:href="@{/admin/js/bootstrap.min.js}">
+	<link rel="stylesheet" th:href="@{/admin/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/admin/css/datepicker3.css}">
+	<link rel="stylesheet" th:href="@{/admin/css/styles.css}">
+	<script th:src="@{/admin/js/respond.min.js}"></script>
+	<script th:src="@{/admin/js/html5shiv.min.js}"></script>
+	<style>
+		table[border="1"] {
+			border-collapse:collapse;
+			font:normal normal 11px Verdana,Arial,Sans-Serif;
+			color:#333;
+			width: 100%;
+			text-align: center;
+			font-size:16px;
+		}
 
+		table[border="1"] tr {
+			background-color:#fff;
+		}
+
+		table[border="1"] th,
+		table[border="1"] td {
+			vertical-align:top;
+			padding:5px 10px;
+			border:1px solid #333;
+		}
+
+		table[border="1"] th {
+			background-color:#333;
+			color:#fff;
+			font-weight:bold;
+		}
+	</style>
 </head>
 
 <body>
@@ -188,10 +222,10 @@
 							<!--</script>-->
 						<!--</div>-->
 					<!--</div>-->
-					<div style="width: 970px">
+					<div style="width: 980px">
 						<form action="">
-							<table border="1" style="width: 100%; text-align: center; font-size:16px" id="res">
-								<tr>
+							<table border="1" id="res">
+								<thead>
 									<th>ID</th>
 									<th>Tên Sản Phẩm</th>
 									<th>Ảnh</th>
@@ -199,10 +233,11 @@
 									<th>Số Lượng</th>
 									<th>Đơn Giá</th>
 									<th>Xóa Sản Phẩm</th>
-								</tr>
+								</thead>
+								<tbody>
 								<th:block th:each="item: ${session.order.items}" th:unless="${session == null}" >
 									<tr>
-										<td th:text="${item.product.id}"></td>
+										<td scope="row" th:text="${item.product.id}"></td>
 										<td th:text="${item.product.name}"></td>
 										<td><img th:src="@{/__${item.product.image }__}" height="200px" width="220px"></td>
 										<td th:text="${item.product.unitPrice}"></td>
@@ -211,6 +246,7 @@
 										<td><a  th:href="@{/remove-item/__${item.product.id}__ }" style="color: red">Xóa</a></td>
 									</tr>
 								</th:block>
+								</tbody>
 							</table>
 							<script type="application/javascript">
                                 var sum = 0;
@@ -228,8 +264,8 @@
                                 var totalBalance  = document.createTextNode('Tổng giá tiền: ' + sum + ' VNĐ');
                                 cell.appendChild(totalBalance);
 							</script>
-							<div style="margin-top: 50px; margin-left: 50px; text-align: center"  >
-								<a th:href="@{/save-customer}" style="border-color: red">Tiếp Tục Mua Hàng</a>
+							<div style="margin-top: 50px; margin-left: 50px;font-size:25px; text-align: center"  >
+								<a th:href="@{/save-customer}" style="color: blue">Tiếp Tục Mua Hàng</a>
 							</div>
 						</form>
 					</div>

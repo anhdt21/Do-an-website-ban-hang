@@ -117,6 +117,7 @@ public class AddToCardController {
         Date date = new Date();
         String currentTime = new SimpleDateFormat("dd/MM/yyyy").format(date);
         order.setDateOrder(currentTime);
+        order.setStatus("Chưa xử lý");
         orderService.save(order);
 
         for (Item item : items) {
