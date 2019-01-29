@@ -155,28 +155,28 @@
 				<div class="cate1"><a href="#">Nhập thông tin</a></div>
 
 			</div>
-			<div style="float: left; margin-top: 80px; margin-left: 300px;height: 200px" >
+			<div style="float: left; margin-top: 80px; margin-left: 200px;height: 200px" >
 				<form th:action="@{/save-order}" th:object="${customer}" method="post">
 					<!--<input type="hidden" th:field="*{customer.id}">-->
 					<table class="table table-hover table-striped" id="res">
 						<tr>
 							<td>
-								<table class="table table-hover table-striped">
+								<table class="table table-hover table-striped" style="height: 162px; font-size: 22px;">
 									<tr>
 										<td>Họ tên:</td>
-										<td><input type="text" th:field="*{name}"/></td>
+										<td><input style="height: 25px; width: 330px;" type="text" th:field="*{name}"/></td>
 									</tr>
 									<tr>
 										<td>Email:</td>
-										<td><input type="text" th:field="*{email}"/></td>
+										<td><input style="height: 25px; width: 330px;" type="text" th:field="*{email}"/></td>
 									</tr>
 									<tr>
 										<td>Địa chỉ:</td>
-										<td><input type="text" th:field="*{address}"/></td>
+										<td><input style="height: 25px; width: 330px;" type="text" th:field="*{address}"/></td>
 									</tr>
 									<tr>
 										<td>SĐT:</td>
-										<td><input type="text" th:field="*{phone}"/></td>
+										<td><input style="height: 25px; width: 330px;" type="text" th:field="*{phone}"/></td>
 									</tr>
 								</table>
 							</td>

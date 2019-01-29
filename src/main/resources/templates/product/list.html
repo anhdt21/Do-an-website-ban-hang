@@ -117,6 +117,7 @@
 									<th>Ảnh</th>
 									<th>Size</th>
 									<th>Giá Sản phẩm</th>
+									<th>Khuyến mại</th>
 									<th>Loại</th>
 									<th>Nhà Sản Xuất</th>
 									<th>Sửa</th>
@@ -131,6 +132,7 @@
 											<td><img th:src="@{/__${product.image}__}" height="200" width="200"/></td>
 											<td th:text="${product.size}"></td>
 											<td th:text="${product.unitPrice}"></td>
+											<td><span th:text="${product.promotionPrice}"></span>%</td>
 											<td th:text="${product.productType.name}"></td>
 											<td th:text="${product.producer.name}"></td>
 											<td><a th:href="@{/edit-product/__${product.id}__ }">Sửa</a></td>

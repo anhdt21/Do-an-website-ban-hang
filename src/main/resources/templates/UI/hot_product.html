@@ -158,11 +158,13 @@
 
             </div>
             <th:block th:each="product : ${products}">
-                <div id="boxproduct" style="border-left:none; height: 200px">
+                <div id="boxproduct" style="border-left:none">
                     <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
                         <div class="title"><label th:text="${product.name}"></label></div>
-                        <div style="float:left; font-size:12px; width:180px; padding-left:5px; padding-right:4px; padding-left:5px; color:#0a61a6; text-align:center">Giá cũ: <label th:text="${product.unitPrice}"></label> VNĐ</div>
-                        <div class="price" th:if="${not #strings.startsWith(product.promotionPrice,'0')}">Giá khuyến mại: <label th:text="${product.promotionPrice}"></label> VNĐ</div></a>
+                        <div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+                    <div class="oldprice" th:if="${not #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+                    <div class="price" th:if="${not #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice - product.unitPrice * product.promotionPrice / 100}"></label> VNĐ</div></a>
+                    <div style="color: blue; text-align: center" th:if="${not #strings.startsWith(product.promotionPrice,'0')}">đang giảm giá <span th:text="${product.promotionPrice}"></span>%</div></a>
                     <a th:href="@{/addtocard/__${product.id}__}"><div style="color: black; text-align: center"><img th:src="@{/images/giohang.jpg}" />thêm vào giỏ</div></a>
                 </div>
             </th:block>

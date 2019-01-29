@@ -167,7 +167,7 @@
 							</td>
 							<td>
 								<div style="width: 420px; height: 200px; margin-top: 40px; margin-right: 60px;">
-									<table class="table table-hover table-striped" style="font-size:17px; text-align: center">
+									<table class="table table-hover table-striped" style="font-size: 21px; text-align: left; height: 189px;">
 										<input th:type="hidden" name="id" th:field="*{id}">
 										<tr>
 											<td></td>
@@ -184,13 +184,21 @@
 											<td style="color: #0a61a6">Chi tiết:</td>
 											<td><label th:text="${product.detail}"></label></td>
 										</tr>
-										<tr>
+										<tr th:if="${ #strings.startsWith(product.promotionPrice,'0')}">
 											<td style="color: #0a61a6">Giá Sản Phẩm:</td>
 											<td><label style="color: red" th:text="${product.unitPrice}+' VNĐ'"></label></td>
 										</tr>
 										<tr th:if="${not #strings.startsWith(product.promotionPrice,'0')}">
-											<td style="color: #0a61a6">Giá Khuyến Mãi:</td>
-											<td><label style="color:blue" th:text="${product.promotionPrice}+' VNĐ'"></label></td>
+											<td style="color: #0a61a6">Giá Cũ:</td>
+											<td><label style="color:#000000; text-decoration: line-through;" th:text="${product.unitPrice}+' VNĐ'"></label></td>
+										</tr>
+										<tr th:if="${not #strings.startsWith(product.promotionPrice,'0')}">
+											<td style="color: #0a61a6">Giá Mới:</td>
+											<td><label style="color: red" th:text="${product.unitPrice}+' VNĐ'"></label></td>
+										</tr>
+										<tr th:if="${not #strings.startsWith(product.promotionPrice,'0')}">
+											<td style="color: #0a61a6">Khuyến Mãi:</td>
+											<td><label style="color:green" th:text="${product.promotionPrice}+' %'"></label></td>
 										</tr>
 										<tr>
 											<td style="color: #0a61a6">Loại Sản Phẩm:</td>

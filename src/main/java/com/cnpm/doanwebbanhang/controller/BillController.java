@@ -1,6 +1,8 @@
 package com.cnpm.doanwebbanhang.controller;
 
+import com.cnpm.doanwebbanhang.model.Item;
 import com.cnpm.doanwebbanhang.model.Order;
+import com.cnpm.doanwebbanhang.service.ItemService;
 import com.cnpm.doanwebbanhang.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -21,6 +24,9 @@ public class BillController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private ItemService itemService;
 
     @GetMapping("bills")
     public ModelAndView showBill(@PageableDefault(size = 10) Pageable pageable) {
@@ -55,6 +61,11 @@ public class BillController {
 
     @GetMapping("/delete-bill/{id}")
     public ModelAndView showDeleteBillForm(@PageableDefault(size = 10) Pageable pageable, @PathVariable Integer id) {
+        Optional<Order> order = orderService.findById(id);
+        List<Item> items = order.get().getItems();
+        for (Item item : items) {
+            itemService.remove(item.getId());
+        }
         orderService.remove(id);
         Page<Order> orders = orderService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("/bill/list");
