@@ -117,8 +117,8 @@
 											<td><a th:href="@{/edit-bill/__${bill.id}__}"><span th:text="${bill.id}"></span></a></td>
 											<td th:text="${bill.dateOrder}"></td>
 											<td th:text="${bill.customer.name}"></td>
-											<td th:if="${not #strings.startsWith(bill.status,'Đ')}"><a th:href="@{/processed/__${bill.id}__}"><span th:text="${bill.status}" style="color: red"></span></a></td>
-											<td th:if="${not #strings.startsWith(bill.status,'C')}"><a th:href="@{/processing/__${bill.id}__}"><span th:text="${bill.status}" style="color: blue"></span></a></td>
+											<td th:if="${not #strings.startsWith(bill.status,'Đ')}"><span th:text="${bill.status}" style="color: red"></span></td>
+											<td th:if="${not #strings.startsWith(bill.status,'C')}"><span th:text="${bill.status}" style="color: blue"></span></td>
 											<td><a onclick="myFunction()" th:href="@{/delete-bill/__${bill.id}__}">Xóa</a></td>
 										</tr>
 									</th:block>

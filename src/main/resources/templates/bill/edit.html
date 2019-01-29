@@ -105,15 +105,18 @@
                                 <form th:action="@{/edit-bill}" th:object="${order}" method="post">
                                     <tr>
                                         <td>Mã đơn hàng: </td>
-                                        <td><input type="text" th:field="*{id}" ></td>
+                                        <td><input type="text" th:field="*{id}" hidden>
+                                            <input type="text" th:field="*{id}" disabled></td>
                                     </tr>
                                     <tr>
                                         <td>Ngày đặt hàng: </td>
-                                        <td><input type="text" th:field="*{dateOrder}"></td>
+                                        <td><input type="text" th:field="*{dateOrder}" hidden>
+                                            <input type="text" th:field="*{dateOrder}" disabled></td>
                                     </tr>
                                     <tr>
-                                        <td>ID khách hàng: </td>
-                                        <td><input type="text" th:field="*{customer.id}"></td>
+                                        <td>Tên khách hàng: </td>
+                                        <td><input type="text" th:field="*{customer.id}" hidden>
+                                            <input type="text" th:field="*{customer.name}" disabled></td>
                                     </tr>
                                     <tr>
                                         <td>Trạng thái: </td>
@@ -122,12 +125,11 @@
 		                                        <option value="Đã xử lý">Đã xử lý</option>
 		                                        <option value="Chưa xử lý">Chưa xử lý</option>
 	                                        </select>
-	                                        <!--<input type="text" th:field="*{status}" >-->
                                         </td>
                                     </tr>
                                     <tr>
 	                                    <td></td>
-	                                    <td><input type="submit" value="Save Bill" style="width: 117px; height: 35px; float: left;"></td>
+	                                    <td onclick="myFunction()"><input type="submit" value="Save Bill" style="width: 117px; height: 35px; float: left;"></td>
                                     </tr>
                                 </form>
                             </table>
@@ -139,6 +141,11 @@
     </div>
 </div>	<!--/.main-->
 
+<script>
+    function myFunction() {
+        alert("Sửa đơn hàng thành công !");
+    }
+</script>
 <script th:src="@{/admin/js/jquery-1.11.1.min.js}"></script>
 <script th:src="@{/admin/js/bootstrap.min.js}"></script>
 <script th:src="@{/admin/js/chart.min.js}"></script>

@@ -43,60 +43,24 @@ public class BillController {
         }
     }
 
+    @PostMapping("/edit-bill")
+    public ModelAndView editBill(@PageableDefault Pageable pageable, @ModelAttribute("order") Order order) {
+        orderService.save(order);
+        Page<Order> orders = orderService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("bill/list");
+        modelAndView.addObject("order", order);
+        modelAndView.addObject("orders", orders);
+        return modelAndView;
+    }
+
     @GetMapping("/delete-bill/{id}")
     public ModelAndView showDeleteBillForm(@PageableDefault(size = 10) Pageable pageable, @PathVariable Integer id) {
-            orderService.remove(id);
-            Page<Order> orders = orderService.findAll(pageable);
-            ModelAndView modelAndView = new ModelAndView("/bill/list");
-            modelAndView.addObject("orders", orders);
-            return modelAndView;
-
-    }
-
-    @GetMapping("processing/{id}")
-    public ModelAndView showProcessing(@PageableDefault(size = 10) Pageable pageable, @PathVariable Integer id) {
+        orderService.remove(id);
         Page<Order> orders = orderService.findAll(pageable);
-        Optional<Order> bill = orderService.findById(id);
-        bill.get().setStatus("Chưa xử lý");
-        if (bill != null) {
-            ModelAndView modelAndView = new ModelAndView("bill/list");
-            modelAndView.addObject("bills", orders);
-            return modelAndView;
-        } else {
-            ModelAndView modelAndView = new ModelAndView("error.404");
-            return modelAndView;
-        }
-    }
-
-    @PostMapping("/edit-bill")
-    public ModelAndView editBill(@ModelAttribute("order") Order order) {
-        orderService.save(order);
-        ModelAndView modelAndView = new ModelAndView("bill/edit");
-        modelAndView.addObject("order", order);
+        ModelAndView modelAndView = new ModelAndView("/bill/list");
+        modelAndView.addObject("orders", orders);
         return modelAndView;
-    }
 
-    @PostMapping("processed/")
-    public ModelAndView processed(@ModelAttribute("bill") Order order) {
-        orderService.save(order);
-        ModelAndView modelAndView = new ModelAndView("bill/edit");
-        modelAndView.addObject("bill", order);
-        return modelAndView;
-    }
-
-    @GetMapping("processed/{id}")
-    public ModelAndView showProcessed(@PageableDefault(size = 10) Pageable pageable, @PathVariable Integer id) {
-        Page<Order> orders = orderService.findAll(pageable);
-        Optional<Order> bill = orderService.findById(id);
-        bill.get().setStatus("Chưa xử lý");
-        if (bill != null) {
-            ModelAndView modelAndView = new ModelAndView("bill/list");
-            modelAndView.addObject("bills", orders);
-            return modelAndView;
-        } else {
-            ModelAndView modelAndView = new ModelAndView("error.404");
-            return modelAndView;
-        }
     }
 
 }

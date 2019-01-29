@@ -238,10 +238,14 @@
 								<th:block th:each="item: ${session.order.items}" th:unless="${session == null}" >
 									<tr>
 										<td scope="row" th:text="${item.product.id}"></td>
-										<td th:text="${item.product.name}"></td>
+										<td><a th:href="@{/view-product/__${item.product.id}__ }"><span  th:text="${item.product.name}"></span></a></td>
 										<td><img th:src="@{/__${item.product.image }__}" height="200px" width="220px"></td>
 										<td th:text="${item.product.unitPrice}"></td>
-										<td th:text="${item.quantity}" th:value="${item.quantity}"></td>
+										<td>
+											<a th:href="@{/decrease-item/__${item.product.id}__ }"><-</a>
+											<span th:text="${item.quantity}" th:value="${item.quantity}"></span>
+											<a th:href="@{/increase-item/__${item.product.id}__ }">-></a>
+										</td>
 										<td th:text="${item.product.unitPrice * item.quantity}" class="dongia"></td>
 										<td><a  th:href="@{/remove-item/__${item.product.id}__ }" style="color: red">Xóa</a></td>
 									</tr>
