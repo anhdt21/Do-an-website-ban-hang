@@ -192,8 +192,8 @@
     	<div class="cate1"><a href=""></a></div>
         <div class="cate2">
             <form>
-                <input type="text" name="s" class="inputsearch" />
-                <input type="submit" class="search" value="Tìm kiếm"/>
+                <input style="height: 17px;" type="text" name="s" class="inputsearch" />
+                <input type="submit" class="smsearch" value=" "/>
             </form>
         </div>
     </div>
@@ -215,7 +215,13 @@
     </th:block>
 </div>
 
-<div id="boxcategory" th:each="productType : ${productTypes}">
+	<div style="float: left; margin-left: 120px">
+		<a th:href="@{'/home'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+		<span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
+		<a th:href="@{'/home'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
+	</div>
+
+	<div id="boxcategory" th:each="productType : ${productTypes}">
 	<div id="title_category">
     	<div class="cate1"><a th:href="@{/choice-product-type/__${productType.id}__}"><label th:text="${productType.name}"></label></a></div>
     </div>

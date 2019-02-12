@@ -37,11 +37,13 @@ public class BillController {
     }
 
     @GetMapping("edit-bill/{id}")
-    public ModelAndView editBill(@PathVariable Integer id) {
+    public ModelAndView editBill(@PathVariable Integer id,@PageableDefault(size = 30) Pageable pageable) {
         Optional<Order> order = orderService.findById(id);
+        Page<Item> items = itemService.findAllByOrder_Id(id, pageable);
         if (order.isPresent()) {
             ModelAndView modelAndView = new ModelAndView("bill/edit");
             modelAndView.addObject("order", order);
+            modelAndView.addObject("items", items);
             return modelAndView;
         } else {
             ModelAndView modelAndView = new ModelAndView("error.404");

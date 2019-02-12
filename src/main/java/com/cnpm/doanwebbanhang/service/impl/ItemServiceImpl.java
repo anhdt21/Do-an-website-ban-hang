@@ -33,4 +33,9 @@ public class ItemServiceImpl implements ItemService {
     public void remove(Integer id) {
         itemRepository.deleteById(id);
     }
+
+    @Override
+    public Page<Item> findAllByOrder_Id(Integer id, Pageable pageable) {
+        return itemRepository.findAllByOrder_Id(id, pageable);
+    }
 }

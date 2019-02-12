@@ -78,7 +78,7 @@
         <li><a href="/products"><em class="fa fa-android">&nbsp;</em> Quản lý sản phẩm</a></li>
         <li><a href="/producers"><em class="fa fa-apple">&nbsp;</em> Quản lý nhà sản xuất</a></li>
         <li class="active"><a href="/bills"><em class="glyphicon glyphicon-list-alt">&nbsp;</em> Quản lý đơn hàng</a></li>
-        <li><a href="/"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+        <li><a th:href="@{/logout}"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
     </ul>
 </div><!--/.sidebar-->
 
@@ -126,6 +126,50 @@
 		                                        <option value="Chưa xử lý">Chưa xử lý</option>
 	                                        </select>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <table class="table table-hover table-striped" style="text-align: left" id="res">
+                                            <thead>
+                                            <th>ID</th>
+                                            <th>Sản Phẩm</th>
+                                            <th>Giá</th>
+                                            <th>Số Lượng</th>
+                                            <th>KM</th>
+                                            <th>Đơn Giá</th>
+                                            </thead>
+                                            <tbody>
+                                            <th:block th:each="item: ${items}">
+                                                <tr>
+                                                    <td scope="row" th:text="${item.product.id}"></td>
+                                                    <td><span th:text="${item.product.name}"></span></td>
+
+                                                    <td th:text="${item.product.unitPrice}"></td>
+                                                    <td>
+                                                        <span th:text="${item.quantity}" th:value="${item.quantity}"></span>
+                                                    </td>
+                                                    <td><span th:text="${item.product.promotionPrice}"></span>%</td>
+
+                                                    <td th:text="${item.product.unitPrice * item.quantity - item.product.unitPrice * item.quantity * item.product.promotionPrice / 100}" class="dongia"></td>
+                                                </tr>
+                                            </th:block>
+                                            </tbody>
+                                        </table>
+                                        <script type="application/javascript">
+                                            var sum = 0;
+                                            var table = document.getElementById("res");
+                                            var ths = table.getElementsByTagName('th');
+                                            var tds = table.getElementsByClassName('dongia');
+                                            for(var i=0;i<tds.length;i++){
+                                                sum += isNaN(tds[i].innerText) ? 0 : parseInt(tds[i].innerText);
+                                            }
+
+                                            var row = table.insertRow(table.rows.length);
+                                            var cell = row.insertCell(0);
+                                            cell.setAttribute('colspan', ths.length);
+
+                                            var totalBalance  = document.createTextNode('Tổng tiền: ' + sum + ' VNĐ');
+                                            cell.appendChild(totalBalance);
+                                        </script>
                                     </tr>
                                     <tr>
 	                                    <td></td>

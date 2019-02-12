@@ -1,6 +1,7 @@
 package com.cnpm.doanwebbanhang.controller;
 
 import com.cnpm.doanwebbanhang.model.*;
+import com.cnpm.doanwebbanhang.service.OrderService;
 import com.cnpm.doanwebbanhang.service.ProducerService;
 import com.cnpm.doanwebbanhang.service.ProductService;
 import com.cnpm.doanwebbanhang.service.ProductTypeService;
@@ -30,6 +31,23 @@ public class BeginController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private OrderService orderService;
+
+    @GetMapping("/")
+    public ModelAndView show(@PageableDefault(size = 30) Pageable pageable) {
+        Page<Product> products = productService.findAll(pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        Page<Order> orders = orderService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("admin/index");
+        modelAndView.addObject("products", products);
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("orders", orders);
+        return modelAndView;
+    }
+
     @GetMapping("/home")
     public ModelAndView index(@PageableDefault(size = 10) Pageable pageable, @ModelAttribute("s") String s) {
         Page<Product> products;
@@ -53,7 +71,7 @@ public class BeginController {
     }
 
     @GetMapping("/checkout")
-    public ModelAndView showShop(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
+    public ModelAndView showShop(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session.getAttribute("order") == null){
             Page<Producer> producers = producerService.findAll(pageable);
@@ -103,7 +121,7 @@ public class BeginController {
     }
 
     @GetMapping("/choice-product-type/{id}")
-    public ModelAndView showFormProductType(@PageableDefault(size = 15) Pageable pageable, @PathVariable Long id) {
+    public ModelAndView showFormProductType(@PageableDefault Pageable pageable, @PathVariable Long id) {
         Page<Product> products = productService.findAllByProductType_Id(id, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -118,7 +136,7 @@ public class BeginController {
     }
 
     @GetMapping("/choice-producer/{id}")
-    public ModelAndView showFormProducer(@PageableDefault(size = 15) Pageable pageable, @PathVariable Long id) {
+    public ModelAndView showFormProducer(@PageableDefault Pageable pageable, @PathVariable Long id) {
         Page<Product> products = productService.findAllByProducer_Id(id, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);

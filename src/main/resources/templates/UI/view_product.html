@@ -194,7 +194,7 @@
 										</tr>
 										<tr th:if="${not #strings.startsWith(product.promotionPrice,'0')}">
 											<td style="color: #0a61a6">Giá Mới:</td>
-											<td><label style="color: red" th:text="${product.unitPrice}+' VNĐ'"></label></td>
+											<td><label style="color: red" th:text="${product.unitPrice - product.unitPrice * product.promotionPrice / 100}+' VNĐ'"></label></td>
 										</tr>
 										<tr th:if="${not #strings.startsWith(product.promotionPrice,'0')}">
 											<td style="color: #0a61a6">Khuyến Mãi:</td>
