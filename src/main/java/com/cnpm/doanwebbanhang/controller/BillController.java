@@ -51,6 +51,21 @@ public class BillController {
         }
     }
 
+    @GetMapping("print-bill/{id}")
+    public ModelAndView printBill(@PathVariable Integer id,@PageableDefault(size = 30) Pageable pageable) {
+        Optional<Order> order = orderService.findById(id);
+        Page<Item> items = itemService.findAllByOrder_Id(id, pageable);
+        if (order.isPresent()) {
+            ModelAndView modelAndView = new ModelAndView("bill/print_bill");
+            modelAndView.addObject("order", order);
+            modelAndView.addObject("items", items);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("error.404");
+            return modelAndView;
+        }
+    }
+
     @PostMapping("/edit-bill")
     public ModelAndView editBill(@PageableDefault Pageable pageable, @ModelAttribute("order") Order order) {
         orderService.save(order);

@@ -108,6 +108,7 @@
 									<th>Ngày Đặt Hàng</th>
 									<th>Tên Khách Hàng</th>
 									<th>Trạng Thái</th>
+									<th>In hóa đơn</th>
 									<th>Xóa</th>
 									</thead>
 									<tbody>
@@ -119,6 +120,7 @@
 											<td th:text="${bill.customer.name}"></td>
 											<td th:if="${not #strings.startsWith(bill.status,'Đ')}"><span th:text="${bill.status}" style="color: red"></span></td>
 											<td th:if="${not #strings.startsWith(bill.status,'C')}"><span th:text="${bill.status}" style="color: blue"></span></td>
+											<td><a th:href="@{/print-bill/__${bill.id}__}" style=" color:darkorange;">Get Bill</a></td>
 											<td><a onclick="myFunction()" th:href="@{/delete-bill/__${bill.id}__}">Xóa</a></td>
 										</tr>
 									</th:block>
