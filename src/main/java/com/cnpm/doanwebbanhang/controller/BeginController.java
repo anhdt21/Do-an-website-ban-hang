@@ -1,14 +1,13 @@
 package com.cnpm.doanwebbanhang.controller;
 
 import com.cnpm.doanwebbanhang.model.*;
-import com.cnpm.doanwebbanhang.service.OrderService;
-import com.cnpm.doanwebbanhang.service.ProducerService;
-import com.cnpm.doanwebbanhang.service.ProductService;
-import com.cnpm.doanwebbanhang.service.ProductTypeService;
+import com.cnpm.doanwebbanhang.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +32,9 @@ public class BeginController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public ModelAndView show(@PageableDefault(size = 30) Pageable pageable) {
@@ -97,6 +99,7 @@ public class BeginController {
                                     @ModelAttribute("order") Order order, HttpServletRequest request) {
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        User user = userService.findByName(getUserName());
         ModelAndView modelAndView = new ModelAndView("UI/buy_products");
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
@@ -220,5 +223,16 @@ public class BeginController {
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
         return modelAndView;
+    }
+
+    public String getUserName() {
+        String userName;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
     }
 }

@@ -163,7 +163,7 @@
 							<td>
 								<table class="table table-hover table-striped" style="height: 162px; font-size: 22px;">
 									<tr>
-										<td>Họ tên:</td>
+										<td>Họ tên:<label style="color: red">(*)</label></label></td>
 										<td><input style="height: 25px; width: 330px;" type="text" th:field="*{name}"/></td>
 									</tr>
 									<tr>
@@ -171,11 +171,11 @@
 										<td><input style="height: 25px; width: 330px;" type="text" th:field="*{email}"/></td>
 									</tr>
 									<tr>
-										<td>Địa chỉ:</td>
+										<td>Địa chỉ:<label style="color: red">(*)</label></td>
 										<td><input style="height: 25px; width: 330px;" type="text" th:field="*{address}"/></td>
 									</tr>
 									<tr>
-										<td>SĐT:</td>
+										<td>SĐT:<label style="color: red">(*)</label></td>
 										<td><input style="height: 25px; width: 330px;" type="text" th:field="*{phone}"/></td>
 									</tr>
 								</table>
@@ -185,6 +185,9 @@
 									<input type="submit" value="Xác Nhận Mua Hàng">
 								</div>
 							</td>
+						</tr>
+						<tr>
+						<td><label style="color: blue; font-size: large;">(*) Thông tin bắt buộc</label></td>
 						</tr>
 					</table>
 				</form>

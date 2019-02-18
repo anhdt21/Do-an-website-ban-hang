@@ -70,10 +70,6 @@ public class DoAnWebBanHangApplication {
         return new CustomerServiceImpl();
     }
 
-    @Bean
-    public BillDetailService billDetailService() {
-        return new BillDetailServiceImpl();
-    }
 
     @Bean
     public ProducerService producerService() {
