@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -51,7 +52,7 @@ public class BeginController {
     }
 
     @GetMapping("/home")
-    public ModelAndView index(@PageableDefault(size = 10) Pageable pageable, @ModelAttribute("s") String s) {
+    public ModelAndView index(@PageableDefault(size = 10) Pageable pageable, @ModelAttribute("s") String s, HttpServletRequest request) {
         Page<Product> products;
         if (s == null) {
             products = productService.findAll(pageable);
@@ -66,6 +67,7 @@ public class BeginController {
         modelAndView.addObject("products", products);
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("size", getSize(request));
         if (products.isEmpty()) {
             modelAndView.addObject("message", "Không tìm thấy sản phẩm");
         }
@@ -223,6 +225,17 @@ public class BeginController {
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
         return modelAndView;
+    }
+
+    public int getSize(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("order") == null) {
+            return 0;
+        } else {
+            Order order = (Order) session.getAttribute("order");
+            List<Item> items = order.getItems();
+            return items.size();
+        }
     }
 
     public String getUserName() {
