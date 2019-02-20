@@ -51,7 +51,12 @@
 					<div class="total">
 						<span class="simpleCart_total"></span></div>
 					<div style="float: right; padding-left:10px; padding-top:5px; font-size:12px; font-weight:bold">Giỏ hàng</div>
-					<div style="float: right; padding-left:50px"><img th:src="@{/images/giohang.jpg}" /></div>
+					<div style="float: right; padding-left:50px">
+						<img th:src="@{/images/giohang.jpg}" />
+						<th:block th:if="${size}">
+							<span th:text="${'('+size+')'}" style="color: red; font-size: small"></span>
+						</th:block>
+					</div>
 				</a>
 			</div>
 			<div style="float: right; font-size:12px; font-weight:bold">
@@ -193,35 +198,6 @@
 				<div class="container">
 					<div class="ckeck-top heading">
 					</div>
-					<!--<div class="ckeckout-top">-->
-						<!--<div class="cart-items">-->
-							<!--<h3></h3>-->
-							<!--<script>$(document).ready(function(c) {-->
-                                <!--$('.close1').on('click', function(c){-->
-                                    <!--$('.cart-header').fadeOut('slow', function(c){-->
-                                        <!--$('.cart-header').remove();-->
-                                    <!--});-->
-                                <!--});-->
-                            <!--});-->
-							<!--</script>-->
-							<!--<script>$(document).ready(function(c) {-->
-                                <!--$('.close2').on('click', function(c){-->
-                                    <!--$('.cart-header1').fadeOut('slow', function(c){-->
-                                        <!--$('.cart-header1').remove();-->
-                                    <!--});-->
-                                <!--});-->
-                            <!--});-->
-							<!--</script>-->
-							<!--<script>$(document).ready(function(c) {-->
-                                <!--$('.close3').on('click', function(c){-->
-                                    <!--$('.cart-header2').fadeOut('slow', function(c){-->
-                                        <!--$('.cart-header2').remove();-->
-                                    <!--});-->
-                                <!--});-->
-                            <!--});-->
-							<!--</script>-->
-						<!--</div>-->
-					<!--</div>-->
 					<div style="width: 999px">
 						<form action="">
 							<table border="1" id="res">
@@ -244,9 +220,9 @@
 										<td th:text="${item.product.unitPrice}"></td>
 										<td><span th:text="${item.product.promotionPrice}"></span>%</td>
 										<td>
-											<a th:href="@{/decrease-item/__${item.product.id}__ }"><-</a>
+											<a th:href="@{/decrease-item/__${item.product.id}__ }">-</a>
 											<span th:text="${item.quantity}" th:value="${item.quantity}"></span>
-											<a th:href="@{/increase-item/__${item.product.id}__ }">-></a>
+											<a th:href="@{/increase-item/__${item.product.id}__ }">+</a>
 										</td>
 										<td th:text="${item.product.unitPrice * item.quantity - item.product.unitPrice * item.quantity * item.product.promotionPrice / 100}" class="dongia"></td>
 										<td><a  th:href="@{/remove-item/__${item.product.id}__ }" style="color: red">Xóa</a></td>

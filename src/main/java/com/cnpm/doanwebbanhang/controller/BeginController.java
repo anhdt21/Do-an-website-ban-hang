@@ -52,7 +52,7 @@ public class BeginController {
     }
 
     @GetMapping("/home")
-    public ModelAndView index(@PageableDefault(size = 10) Pageable pageable, @ModelAttribute("s") String s, HttpServletRequest request) {
+    public ModelAndView index(@PageableDefault(size = 15) Pageable pageable, @ModelAttribute("s") String s, HttpServletRequest request) {
         Page<Product> products;
         if (s == null) {
             products = productService.findAll(pageable);
@@ -83,6 +83,7 @@ public class BeginController {
             ModelAndView modelAndView = new ModelAndView("UI/index", "message","Giỏ hàng trống !");
             modelAndView.addObject("producers", producers);
             modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("size", getSize(request));
             return modelAndView;
         }
         Page<Product> products = productService.findAll(pageable);
@@ -91,6 +92,7 @@ public class BeginController {
         ModelAndView modelAndView = new ModelAndView("UI/checkout");
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("size", getSize(request));
         modelAndView.addObject("products", products);
         return modelAndView;
     }
@@ -109,11 +111,12 @@ public class BeginController {
         HttpSession session = request.getSession();
 //        Order order = (Order) session.getAttribute("order");
         modelAndView.addObject("customer", customer);
+        modelAndView.addObject("size", getSize(request));
         return modelAndView;
     }
 
     @GetMapping("/view-product/{id}")
-    public ModelAndView showViewProduct(@PageableDefault(size = 10) Pageable pageable ,@PathVariable Integer id) {
+    public ModelAndView showViewProduct(@PageableDefault(size = 10) Pageable pageable ,@PathVariable Integer id, HttpServletRequest request) {
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
         Optional<Product> product = productService.findById(id);
@@ -121,12 +124,13 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("product", product.get());
+        modelAndView.addObject("size", getSize(request));
         return modelAndView;
 
     }
 
     @GetMapping("/choice-product-type/{id}")
-    public ModelAndView showFormProductType(@PageableDefault Pageable pageable, @PathVariable Long id) {
+    public ModelAndView showFormProductType(@PageableDefault Pageable pageable, @PathVariable Long id, HttpServletRequest request) {
         Page<Product> products = productService.findAllByProductType_Id(id, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -134,6 +138,7 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        modelAndView.addObject("size", getSize(request));
         if (products.isEmpty()) {
             modelAndView.addObject("message", "Không có sản phẩm nào");
         }
@@ -141,7 +146,7 @@ public class BeginController {
     }
 
     @GetMapping("/choice-producer/{id}")
-    public ModelAndView showFormProducer(@PageableDefault Pageable pageable, @PathVariable Long id) {
+    public ModelAndView showFormProducer(@PageableDefault Pageable pageable, @PathVariable Long id, HttpServletRequest request) {
         Page<Product> products = productService.findAllByProducer_Id(id, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -149,6 +154,7 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        modelAndView.addObject("size", getSize(request));
         if (products.isEmpty()) {
             modelAndView.addObject("message", "Không có sản phẩm nào");
         }
@@ -156,7 +162,7 @@ public class BeginController {
     }
 
     @GetMapping("/cost5")
-    public ModelAndView showProductcostless5(@PageableDefault(size = 20) Pageable pageable) {
+    public ModelAndView showProductcostless5(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceLessThan( 5000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -164,6 +170,7 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        modelAndView.addObject("size", getSize(request));
         if (products.isEmpty()) {
             modelAndView.addObject("message", "Không có sản phẩm nào");
         }
@@ -171,7 +178,7 @@ public class BeginController {
     }
 
     @GetMapping("/cost10")
-    public ModelAndView showProductcostless10(@PageableDefault(size = 20) Pageable pageable) {
+    public ModelAndView showProductcostless10(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceBetween( 5000000, 10000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -179,6 +186,7 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        modelAndView.addObject("size", getSize(request));
         if (products.isEmpty()) {
             modelAndView.addObject("message", "Không có sản phẩm nào");
         }
@@ -186,7 +194,7 @@ public class BeginController {
     }
 
     @GetMapping("/cost15")
-    public ModelAndView showProductcostless15(@PageableDefault(size = 20) Pageable pageable) {
+    public ModelAndView showProductcostless15(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceBetween( 10000000, 15000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -194,6 +202,7 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        modelAndView.addObject("size", getSize(request));
         if (products.isEmpty()) {
             modelAndView.addObject("message", "Không có sản phẩm nào");
         }
@@ -201,7 +210,7 @@ public class BeginController {
     }
 
     @GetMapping("/cost20")
-    public ModelAndView showProductcostless50(@PageableDefault(size = 20) Pageable pageable) {
+    public ModelAndView showProductcostless50(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceBetween( 15000000, 50000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -209,6 +218,7 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        modelAndView.addObject("size", getSize(request));
         if (products.isEmpty()) {
             modelAndView.addObject("message", "Không có sản phẩm nào");
         }
@@ -216,7 +226,7 @@ public class BeginController {
     }
 
     @GetMapping("/hot-product")
-    public ModelAndView showHotProduct(@PageableDefault(size = 20) Pageable pageable) {
+    public ModelAndView showHotProduct(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByHotContaining( "1", pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -224,17 +234,22 @@ public class BeginController {
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
+        modelAndView.addObject("size", getSize(request));
         return modelAndView;
     }
 
-    public int getSize(HttpServletRequest request) {
+    public long getSize(HttpServletRequest request) {
+        long size = 0;
         HttpSession session = request.getSession();
         if (session.getAttribute("order") == null) {
-            return 0;
+            return size;
         } else {
             Order order = (Order) session.getAttribute("order");
             List<Item> items = order.getItems();
-            return items.size();
+            for (Item item : items) {
+                size+= item.getQuantity();
+            }
+            return size;
         }
     }
 

@@ -19,7 +19,12 @@
 			        <div class="total">
 				        <span class="simpleCart_total"></span></div>
 			        <div style="float: right; padding-left:10px; padding-top:5px; font-size:12px; font-weight:bold">Giỏ hàng</div>
-			        <div style="float: right; padding-left:50px"><img th:src="@{/images/giohang.jpg}" /></div>
+			        <div style="float: right; padding-left:50px">
+                        <img th:src="@{/images/giohang.jpg}" />
+                        <th:block th:if="${size}">
+                            <span th:text="${'('+size+')'}" style="color: red; font-size: small"></span>
+                        </th:block>
+                    </div>
 		        </a>
 	        </div>
 	        <div style="float: right;; font-size:12px; font-weight:bold">
