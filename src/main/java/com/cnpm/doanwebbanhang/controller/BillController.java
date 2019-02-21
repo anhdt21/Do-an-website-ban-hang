@@ -2,6 +2,7 @@ package com.cnpm.doanwebbanhang.controller;
 
 import com.cnpm.doanwebbanhang.model.Item;
 import com.cnpm.doanwebbanhang.model.Order;
+import com.cnpm.doanwebbanhang.service.CustomerService;
 import com.cnpm.doanwebbanhang.service.ItemService;
 import com.cnpm.doanwebbanhang.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class BillController {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private CustomerService customerService;
 
     @GetMapping("bills")
     public ModelAndView showBill(@PageableDefault(size = 10) Pageable pageable) {
@@ -83,6 +87,7 @@ public class BillController {
         for (Item item : items) {
             itemService.remove(item.getId());
         }
+        customerService.remove(order.get().getCustomer().getId());
         orderService.remove(id);
         Page<Order> orders = orderService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("/bill/list");

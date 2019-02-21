@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Sản Phẩm</title>
+	<link th:href="@{/UI/style.css}" rel="stylesheet" type="text/css" />
+
+
+
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<div class="logo"><img th:src="@{/images/logo-tuananh.jpg}" height="40" width="100"/></div>
+		<div class="right">
+			<div style="float: left; width:500px; padding-top:10px;">
+				<a href="/checkout">
+					<div class="total">
+						<span class="simpleCart_total"></span></div>
+					<div style="float: right; padding-left:10px; padding-top:5px; font-size:12px; font-weight:bold">Giỏ hàng</div>
+					<div style="float: right; padding-left:50px">
+						<img th:src="@{/images/giohang.jpg}" />
+						<th:block th:if="${size}">
+							<span th:text="${'('+size+')'}" style="color: red; font-size: small"></span>
+						</th:block>
+					</div>
+				</a>
+			</div>
+			<div style="float: right;; font-size:12px; font-weight:bold">
+				<div class="topbar">
+					<ul>
+						<!--<li class="phoneNo"><i class="fa fa-phone"></i>0123 45678910</li>-->
+						<li class="dropdown language"  th:if="${#request.userPrincipal}">
+							<a th:href="@{/logout}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+							   aria-expanded="false">
+								<span>xin chào: </span>
+								<i class="fa fa-caret-down" th:text="${#request.userPrincipal.getName()}"></i>
+							</a>
+							<ul class="dropdown-menu">
+								<li><i class="fa fa-sign-out" aria-hidden="true"></i><a th:href="@{/logout}">Log out</a></li>
+							</ul>
+						</li>
+						<li class="dropdown" th:if="${#request.userPrincipal} == null">
+							<a th:href="@{/login}" class="dropdown-toggle" data-toggle="modal" data-target=".mode" role="button" aria-haspopup="true" aria-expanded="false">
+								<span class="glyphicon glyphicon-user"></span>
+								Login / Registration</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	<div id="menubg">
+		<link type="text/css" rel="stylesheet" th:href="@{/UI/menu/style.css}">
+		<link rel="stylesheet" type="text/css" media="screen" th:href="@{/UI/menu/superfish.css}">
+		<script type="text/javascript" th:src="@{/UI/menu/jquery-1.js}"></script>
+		<script type="text/javascript" th:src="@{/UI/menu/custom.js}"></script>
+		<script type="text/javascript" th:src="@{/UI/menu/superfish.js}"></script>
+		<div id="wrap" class="bgheader2">
+			<ul class="sf-js-enabled sf-shadow" id="topmenu">
+				<li class="active">
+					<a th:href="@{/home}" class="sf-with-ul">
+						Trang chủ<span class="sf-sub-indicator"> »</span></a>
+				</li>
+				<li class="">
+					<a href="" class="sf-with-ul">
+						Loại sản phẩm <span class="sf-sub-indicator"> »</span></a>
+
+					<ul style="display: none; visibility: hidden; left: 166px; width: 931px; background: none repeat scroll 0% 0% rgb(20, 74, 148);" class="sf-menu">
+						<th:block th:each="product : ${productTypes}">
+							<li><a th:href="@{/choice-product-type/__${product.id}__ }" target="" class="sf-with-ul">
+								<span th:text="${product.name}"></span>
+								<span class="sf-sub-indicator" > »</span></a>
+								<ul style="display: none; visibility: hidden;">
+
+								</ul>
+							</li>
+						</th:block>
+					</ul>
+
+				</li>
+
+				<li class="">
+					<a href="" class="sf-with-ul">
+						Hãng sản xuất<span class="sf-sub-indicator"> »</span></a>
+
+					<ul style="display: none; visibility: hidden; left: 166px; width: 931px; background: none repeat scroll 0% 0% rgb(20, 74, 148);" class="sf-menu">
+						<th:block th:each="producer : ${producers}">
+							<li><a th:href="@{/choice-producer/__${producer.id}__ }" target="" class="sf-with-ul">
+								<span th:text="${producer.name}"></span>
+								<span class="sf-sub-indicator" > »</span></a>
+								<ul style="display: none; visibility: hidden;">
+
+								</ul>
+							</li>
+						</th:block>
+					</ul>
+
+				</li>
+
+				<li class="">
+
+					<a class="sf-with-ul">
+						Giá Sản Phẩm<span class="sf-sub-indicator"> »</span>
+						<ul style="display: none; visibility: hidden; left: 166px; width: 931px; background: none repeat scroll 0% 0% rgb(20, 74, 148);" class="sf-menu">
+
+							<li><a th:href="@{/cost5}" target="" class="sf-with-ul">
+								Sản phẩm có giá nhỏ hơn 5 triệu<span class="sf-sub-indicator" > »</span></a>
+								<ul style="display: none; visibility: hidden;">
+
+								</ul>
+							</li>
+
+							<li><a th:href="@{/cost10}" target="" class="sf-with-ul">
+								Sản phẩm có giá từ 5 đến 10 triệu<span class="sf-sub-indicator" > »</span></a>
+								<ul style="display: none; visibility: hidden;">
+
+								</ul>
+							</li>
+
+							<li><a th:href="@{/cost15}" target="" class="sf-with-ul">
+								Sản phẩm có giá từ 10 đến 15 triệu<span class="sf-sub-indicator" > »</span></a>
+								<ul style="display: none; visibility: hidden;">
+
+								</ul>
+							</li>
+
+							<li><a th:href="@{/cost20}" target="" class="sf-with-ul">
+								Sản phẩm có giá trên 15 triệu<span class="sf-sub-indicator" ></span></a>
+								<ul style="display: none; visibility: hidden;">
+
+								</ul>
+							</li>
+						</ul>
+
+					</a>
+				</li>
+
+				<li class="">
+					<a th:href="@{/hot-product}">
+						<span id="ctl00_MenuHome1_rptMenu_ctl09_lblContact">Sản phẩm Hot</span>
+
+					</a>
+				</li>
+			</ul>
+
+
+
+			<div class="moduletype2">
+				<div class="moduletype2_bgheader"></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="bong"></div>
+	<div id="home">
+		<div id="boxcategory">
+			<div id="title_category">
+				<div class="cate1"><a href=""></a></div>
+
+			</div>
+			<div style="margin-top: 50px">
+				<th:block th:if="${message}">
+					<h2><p th:text="${message}" style="color: blue"></p></h2>
+				</th:block>
+			</div>
+
+			<th:block th:each="product : ${products}">
+				<div id="boxproduct" style="border-left:none">
+					<a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
+						<div class="title"><label th:text="${product.name}"></label></div>
+						<div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><label>   .    </label></div>
+						<div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><label>   .    </label></div>
+						<div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+					<div class="oldprice" th:if="${not #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
+					<div class="price" th:if="${not #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice - product.unitPrice * product.promotionPrice / 100}"></label> VNĐ</div></a>
+					<div style="color: blue; text-align: center" th:if="${not #strings.startsWith(product.promotionPrice,'0')}">đang giảm giá <span th:text="${product.promotionPrice}"></span>%</div></a>
+					<a th:href="@{/addtocard/__${product.id}__}"><div style="color: black; text-align: center"><img th:src="@{/images/giohang.jpg}" />thêm vào giỏ</div></a>
+				</div>
+			</th:block>
+		</div>
+		<div style="float: left; margin-left: 120px; color: blue; font-size: large;">
+			<a th:href="@{'/choice-producer/2'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+			<span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
+			<a th:href="@{'/choice-producer/2'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
+		</div>
+	</div>
+
+	<div style="clear:both"></div>
+</div>
+<div id="ft" style=" margin-top: 500px">
+	<div style=" margin:auto; width: 1000px;">
+		<div id="ftnews">
+			<table width="1000" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="250px">
+						<div class="addr_right">
+
+						</div>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+		<div id="ftcontent">
+
+    <span style="font-size:12px; color:#FFF">
+   <b>CÔNG TY TNHH THƯƠNG MẠI VÀ ĐIỆN TỬ TUẤN ANH</b><br />
+Add: 58 - Trần Bình - Mai Dịch - Cầu Giấy - Hà Nội<br />
+Tel: 0466836838 - 0466835886   Hotline: 0984089666(Mr T) - 0906235323(Mr A)<br />
+www.tuananh.vn  -  Email: info@tuananh.vn
+</span>
+
+		</div>
+	</div>
+	<div style="clear:both"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

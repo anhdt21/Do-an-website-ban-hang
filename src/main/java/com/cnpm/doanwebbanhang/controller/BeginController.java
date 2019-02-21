@@ -130,43 +130,117 @@ public class BeginController {
     }
 
     @GetMapping("/choice-product-type/{id}")
-    public ModelAndView showFormProductType(@PageableDefault Pageable pageable, @PathVariable Long id, HttpServletRequest request) {
+    public ModelAndView showFormProductType(@PageableDefault(size = 10) Pageable pageable, @PathVariable Long id, HttpServletRequest request) {
         Page<Product> products = productService.findAllByProductType_Id(id, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("UI/product_type");
-        modelAndView.addObject("producers", producers);
-        modelAndView.addObject("productTypes", productTypes);
-        modelAndView.addObject("products", products);
-        modelAndView.addObject("size", getSize(request));
-        if (products.isEmpty()) {
-            modelAndView.addObject("message", "Không có sản phẩm nào");
+        if (id == 1) {
+            ModelAndView modelAndView = new ModelAndView("UI/product_type1");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("products", products);
+            modelAndView.addObject("size", getSize(request));
+            if (products.isEmpty()) {
+                modelAndView.addObject("message", "Không có sản phẩm nào");
+            }
+            return modelAndView;
+        } else if (id == 2) {
+            ModelAndView modelAndView = new ModelAndView("UI/product_type2");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("products", products);
+            modelAndView.addObject("size", getSize(request));
+            if (products.isEmpty()) {
+                modelAndView.addObject("message", "Không có sản phẩm nào");
+            }
+            return modelAndView;
+        } else if (id == 3) {
+            ModelAndView modelAndView = new ModelAndView("UI/product_type3");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("products", products);
+            modelAndView.addObject("size", getSize(request));
+            if (products.isEmpty()) {
+                modelAndView.addObject("message", "Không có sản phẩm nào");
+            }
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("UI/product_type");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("products", products);
+            modelAndView.addObject("size", getSize(request));
+            if (products.isEmpty()) {
+                modelAndView.addObject("message", "Không có sản phẩm nào");
+            }
+            return modelAndView;
         }
-        return modelAndView;
     }
 
     @GetMapping("/choice-producer/{id}")
-    public ModelAndView showFormProducer(@PageableDefault Pageable pageable, @PathVariable Long id, HttpServletRequest request) {
+    public ModelAndView showFormProducer(@PageableDefault(size = 10) Pageable pageable, @PathVariable Long id, HttpServletRequest request) {
         Page<Product> products = productService.findAllByProducer_Id(id, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("UI/product_type");
-        modelAndView.addObject("producers", producers);
-        modelAndView.addObject("productTypes", productTypes);
-        modelAndView.addObject("products", products);
-        modelAndView.addObject("size", getSize(request));
-        if (products.isEmpty()) {
-            modelAndView.addObject("message", "Không có sản phẩm nào");
+        if (id == 1) {
+            ModelAndView modelAndView = new ModelAndView("UI/producer1");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("products", products);
+            modelAndView.addObject("size", getSize(request));
+            if (products.isEmpty()) {
+                modelAndView.addObject("message", "Không có sản phẩm nào");
+            }
+            return modelAndView;
+        } else if (id == 2) {
+            ModelAndView modelAndView = new ModelAndView("UI/producer2");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("products", products);
+            modelAndView.addObject("size", getSize(request));
+            if (products.isEmpty()) {
+                modelAndView.addObject("message", "Không có sản phẩm nào");
+            }
+            return modelAndView;
+        } else if (id == 3) {
+            ModelAndView modelAndView = new ModelAndView("UI/producer3");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("products", products);
+            modelAndView.addObject("size", getSize(request));
+            if (products.isEmpty()) {
+                modelAndView.addObject("message", "Không có sản phẩm nào");
+            }
+            return modelAndView;
+        } else if (id == 4) {
+            ModelAndView modelAndView = new ModelAndView("UI/producer4");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("products", products);
+            modelAndView.addObject("size", getSize(request));
+            if (products.isEmpty()) {
+                modelAndView.addObject("message", "Không có sản phẩm nào");
+            }
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("UI/producer5");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("products", products);
+            modelAndView.addObject("size", getSize(request));
+            if (products.isEmpty()) {
+                modelAndView.addObject("message", "Không có sản phẩm nào");
+            }
+            return modelAndView;
         }
-        return modelAndView;
     }
 
     @GetMapping("/cost5")
-    public ModelAndView showProductcostless5(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
+    public ModelAndView showProductcostless5(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceLessThan( 5000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("UI/product_type");
+        ModelAndView modelAndView = new ModelAndView("UI/cost5");
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
@@ -178,11 +252,11 @@ public class BeginController {
     }
 
     @GetMapping("/cost10")
-    public ModelAndView showProductcostless10(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
+    public ModelAndView showProductcostless10(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceBetween( 5000000, 10000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("UI/product_type");
+        ModelAndView modelAndView = new ModelAndView("UI/cost10");
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
@@ -194,11 +268,11 @@ public class BeginController {
     }
 
     @GetMapping("/cost15")
-    public ModelAndView showProductcostless15(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
+    public ModelAndView showProductcostless15(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceBetween( 10000000, 15000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("UI/product_type");
+        ModelAndView modelAndView = new ModelAndView("UI/cost15");
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
@@ -210,11 +284,11 @@ public class BeginController {
     }
 
     @GetMapping("/cost20")
-    public ModelAndView showProductcostless50(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
-        Page<Product> products = productService.findAllByUnitPriceBetween( 15000000, 50000000, pageable);
+    public ModelAndView showProductcostless500(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
+        Page<Product> products = productService.findAllByUnitPriceBetween( 15000000, 500000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("UI/product_type");
+        ModelAndView modelAndView = new ModelAndView("UI/cost_max");
         modelAndView.addObject("producers", producers);
         modelAndView.addObject("productTypes", productTypes);
         modelAndView.addObject("products", products);
@@ -226,7 +300,7 @@ public class BeginController {
     }
 
     @GetMapping("/hot-product")
-    public ModelAndView showHotProduct(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
+    public ModelAndView showHotProduct(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByHotContaining( "1", pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);

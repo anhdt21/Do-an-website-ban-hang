@@ -17,7 +17,7 @@ body{margin:auto; padding:auto; background:url(images/linen.png); font-family:Ar
 #header .right .top ul li a:hover{ background:url(images/tophover.jpg); color:#FFF; text-decoration:none}
 #menubg{ float:left; width:1000px; height:71px; background:url(images/menubg.jpg);-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px;border-radius:5px 5px 5px 5px;behavior:url(PIE.htc);}
 #home{ float:left; width:1000px;}
-#boxcategory{ float:left; width:1000px; margin-top:10px; border:solid 1px #c1d4db}
+#boxcategory{ float:left; width:1000px; margin-top:10px; border:solid 1px #000000}
 #title_category{ float:left; width:996px; height:29px; border-bottom:solid 1px #c1d4db; background:url(images/title_category.jpg)}
 #title_category .cate1{ float:left; width:156px; height:29px; background:url(images/cate1.jpg)}
 #title_category .cate1 a{display:block; padding-left:15px; padding-top:6px; font-size:12px; color:#FFF; font-weight:bold;}
