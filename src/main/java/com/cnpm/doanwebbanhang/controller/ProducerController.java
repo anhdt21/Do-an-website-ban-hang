@@ -1,7 +1,9 @@
 package com.cnpm.doanwebbanhang.controller;
 
 import com.cnpm.doanwebbanhang.model.Producer;
+import com.cnpm.doanwebbanhang.model.Product;
 import com.cnpm.doanwebbanhang.service.ProducerService;
+import com.cnpm.doanwebbanhang.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +19,9 @@ import java.util.Optional;
 public class ProducerController {
     @Autowired
     private ProducerService producerService;
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("create-producer")
     public ModelAndView showCreateProducer() {
@@ -83,7 +88,11 @@ public class ProducerController {
     }
 
     @PostMapping("/delete-producer")
-    public String deleteProducer(@ModelAttribute("producer") Producer producer){
+    public String deleteProducer(@PageableDefault(size = 10) Pageable pageable, @ModelAttribute("producer") Producer producer){
+        Page<Product> products = productService.findAllByProducer_Id(producer.getId(), pageable);
+        for (Product product : products) {
+            productService.remove(product.getId());
+        }
         producerService.remove(producer.getId());
         return "redirect:producers";
     }

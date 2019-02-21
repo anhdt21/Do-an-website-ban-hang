@@ -1,6 +1,8 @@
 package com.cnpm.doanwebbanhang.controller;
 
+import com.cnpm.doanwebbanhang.model.Product;
 import com.cnpm.doanwebbanhang.model.ProductType;
+import com.cnpm.doanwebbanhang.service.ProductService;
 import com.cnpm.doanwebbanhang.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +19,9 @@ import java.util.Optional;
 public class ProductTypeController {
     @Autowired
     private ProductTypeService productTypeService;
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("create-productType")
     public ModelAndView showCreateProductType() {
@@ -83,7 +88,11 @@ public class ProductTypeController {
     }
 
     @PostMapping("/delete-productType")
-    public String deleteProductType(@ModelAttribute("productType") ProductType productType){
+    public String deleteProductType(@PageableDefault(size = 10) Pageable pageable, @ModelAttribute("productType") ProductType productType){
+        Page<Product> products = productService.findAllByProductType_Id(productType.getId(), pageable);
+        for (Product product : products) {
+            productService.remove(product.getId());
+        }
         productTypeService.remove(productType.getId());
         return "redirect:productTypes";
     }
