@@ -38,16 +38,29 @@ public class BeginController {
     private UserService userService;
 
     @GetMapping("/")
-    public ModelAndView show(@PageableDefault(size = 30) Pageable pageable) {
+    public ModelAndView show(@PageableDefault(size = 10000) Pageable pageable) {
+        int count1 = 0, count2 = 0, count3 = 0, count4 = 0;
         Page<Product> products = productService.findAll(pageable);
+        for (Product product : products) {
+            count1++;
+        }
         Page<Producer> producers = producerService.findAll(pageable);
-        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        for (Producer producer : producers) {
+            count2++;
+        }
+        Page<User> users = userService.findAll(pageable);
+        for (User user : users) {
+            count3++;
+        }
         Page<Order> orders = orderService.findAll(pageable);
+        for (Order order : orders) {
+            count4++;
+        }
         ModelAndView modelAndView = new ModelAndView("admin/index");
-        modelAndView.addObject("products", products);
-        modelAndView.addObject("producers", producers);
-        modelAndView.addObject("productTypes", productTypes);
-        modelAndView.addObject("orders", orders);
+        modelAndView.addObject("count1", count1);
+        modelAndView.addObject("count2", count2);
+        modelAndView.addObject("count3", count3);
+        modelAndView.addObject("count4", count4);
         return modelAndView;
     }
 

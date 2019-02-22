@@ -19,4 +19,6 @@ public interface UserService {
 
     User findByName(String username);
 
+    Page<User> findAllByPhoneContaining(String s, Pageable pageable);
+
 }

@@ -33,11 +33,20 @@ public class BillController {
     private CustomerService customerService;
 
     @GetMapping("bills")
-    public ModelAndView showBill(@PageableDefault(size = 10) Pageable pageable) {
-        Page<Order> orders = orderService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("bill/list");
-        modelAndView.addObject("orders", orders);
-        return modelAndView;
+    public ModelAndView showBill(@PageableDefault(size = 10) Pageable pageable, @ModelAttribute("s") String s) {
+
+        if (s == null) {
+            Page<Order> orders = orderService.findAll(pageable);
+            ModelAndView modelAndView = new ModelAndView("bill/list");
+            modelAndView.addObject("orders", orders);
+            return modelAndView;
+        } else {
+            Page<Order> orders = orderService.findAllByDateOrderContaining(s, pageable);
+            ModelAndView modelAndView = new ModelAndView("bill/list");
+            modelAndView.addObject("orders", orders);
+            return modelAndView;
+        }
+
     }
 
     @GetMapping("edit-bill/{id}")
@@ -81,7 +90,7 @@ public class BillController {
     }
 
     @GetMapping("/delete-bill/{id}")
-    public ModelAndView showDeleteBillForm(@PageableDefault(size = 10) Pageable pageable, @PathVariable Integer id) {
+    public ModelAndView showDeleteBillForm(@PageableDefault Pageable pageable, @PathVariable Integer id) {
         Optional<Order> order = orderService.findById(id);
         List<Item> items = order.get().getItems();
         for (Item item : items) {
@@ -94,6 +103,33 @@ public class BillController {
         modelAndView.addObject("orders", orders);
         return modelAndView;
 
+    }
+
+    @GetMapping("/process1")
+    public ModelAndView showBillDoneForm(@PageableDefault Pageable pageable) {
+        String value = "Đã xử lý";
+        Page<Order> orders = orderService.findAllByStatus(value, pageable);
+        ModelAndView modelAndView = new ModelAndView("/bill/list");
+        modelAndView.addObject("orders", orders);
+        return modelAndView;
+    }
+
+    @GetMapping("/process2")
+    public ModelAndView showBillNotProcessForm(@PageableDefault Pageable pageable) {
+        String value = "Chưa xử lý";
+        Page<Order> orders = orderService.findAllByStatus(value, pageable);
+        ModelAndView modelAndView = new ModelAndView("/bill/list");
+        modelAndView.addObject("orders", orders);
+        return modelAndView;
+    }
+
+    @GetMapping("/process3")
+    public ModelAndView showBillCancelForm(@PageableDefault Pageable pageable) {
+        String value = "Đã bị hủy";
+        Page<Order> orders = orderService.findAllByStatus(value, pageable);
+        ModelAndView modelAndView = new ModelAndView("/bill/list");
+        modelAndView.addObject("orders", orders);
+        return modelAndView;
     }
 
 }

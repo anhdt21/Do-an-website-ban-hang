@@ -33,4 +33,14 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.deleteById(id);
 
     }
+
+    @Override
+    public Page<Order> findAllByDateOrderContaining(String s, Pageable pageable) {
+        return orderRepository.findAllByDateOrderContaining(s, pageable);
+    }
+
+    @Override
+    public Page<Order> findAllByStatus(String value, Pageable pageable) {
+        return orderRepository.findAllByStatus(value, pageable);
+    }
 }

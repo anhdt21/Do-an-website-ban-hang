@@ -99,6 +99,24 @@
 						<div class="card">
 							<div class="header">
 								<h3 class="title">Danh Sách Hóa Đơn</h3>
+								<form action="">
+									Tìm kiếm theo ngày đặt :
+									<input type="text" name="s" placeholder="example: dd/MM/yyyy">
+									<input type="submit" value="Search">
+								</form>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="/process1">Đã xử lý</a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="/process2">Chưa xử lý</a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="/process3">Đã bị hủy</a>
 							</div>
 							<div class="content table-responsive table-full-width">
 								<table class="table table-hover table-striped">
@@ -118,9 +136,10 @@
 											<td><a th:href="@{/edit-bill/__${bill.id}__}"><span th:text="${bill.id}"></span></a></td>
 											<td th:text="${bill.dateOrder}"></td>
 											<td th:text="${bill.customer.name}"></td>
-											<td th:if="${not #strings.startsWith(bill.status,'Đ')}"><span th:text="${bill.status}" style="color: red"></span></td>
-											<td th:if="${not #strings.startsWith(bill.status,'C')}"><span th:text="${bill.status}" style="color: blue"></span></td>
-											<td><a th:href="@{/print-bill/__${bill.id}__}" style=" color:darkorange;">Get Bill</a></td>
+											<td th:if="${ #strings.startsWith(bill.status,'Đã xử lý')}"><span th:text="${bill.status}" style="color: blue"></span></td>
+											<td th:if="${ #strings.startsWith(bill.status,'C')}"><span th:text="${bill.status}" style="color: orange"></span></td>
+											<td th:if="${ #strings.startsWith(bill.status,'Đã bị hủy')}"><span th:text="${bill.status}" style="color: red"></span></td>
+											<td><a th:href="@{/print-bill/__${bill.id}__}" style=" color:purple;">Get Bill</a></td>
 											<td><a onclick="myFunction()" th:href="@{/delete-bill/__${bill.id}__}">Xóa</a></td>
 										</tr>
 									</th:block>

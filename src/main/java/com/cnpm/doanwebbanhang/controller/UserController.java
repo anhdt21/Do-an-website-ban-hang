@@ -25,16 +25,19 @@ public class UserController {
     @Autowired
     private UserService userService;
     @GetMapping("/users")
-    public ModelAndView showUser(@PageableDefault(size = 10) Pageable pageable, @ModelAttribute("s") String s) {
-        Page<User> users;
+    public ModelAndView showUser(@PageableDefault Pageable pageable, @ModelAttribute("s") String s) {
+
         if (s == null) {
-            users = userService.findAll(pageable);
+            Page<User> users = userService.findAll(pageable);
+            ModelAndView modelAndView = new ModelAndView("/user/list");
+            modelAndView.addObject("users", users);
+            return modelAndView;
         } else {
-            users = userService.findAllByNameContaining(s, pageable);
+            Page<User> users = userService.findAllByPhoneContaining(s, pageable);
+            ModelAndView modelAndView = new ModelAndView("/user/list");
+            modelAndView.addObject("users", users);
+            return modelAndView;
         }
-        ModelAndView modelAndView = new ModelAndView("/user/list");
-        modelAndView.addObject("users", users);
-        return modelAndView;
     }
     //
     @GetMapping("/edit-user/{id}")
@@ -148,24 +151,24 @@ public class UserController {
 //        return modelAndView;
 //    }
 //
-//    @GetMapping("delete-user/{id}")
-//    public ModelAndView deleteUser(@PathVariable Long id) {
-//        Optional<User> user = userService.findById(id);
-//        if (user != null) {
-//            ModelAndView modelAndView = new ModelAndView("/user/delete");
-//            modelAndView.addObject("user", user);
-//            return modelAndView;
-//        } else {
-//            ModelAndView modelAndView = new ModelAndView("error.404");
-//            return modelAndView;
-//        }
-//    }
-//
-//    @PostMapping("delete-user")
-//    public String delete(@ModelAttribute("user") User user) {
-//        userService.remove(user.getId());
-//        return "redirect:users";
-//
-//    }
+    @GetMapping("delete-user/{id}")
+    public ModelAndView deleteUser(@PathVariable Long id) {
+        Optional<User> user = userService.findById(id);
+        if (user != null) {
+            ModelAndView modelAndView = new ModelAndView("/user/delete");
+            modelAndView.addObject("user", user);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("error.404");
+            return modelAndView;
+        }
+    }
+
+    @PostMapping("delete-user")
+    public String delete(@ModelAttribute("user") User user) {
+        userService.remove(user.getId());
+        return "redirect:users";
+
+    }
 
 }

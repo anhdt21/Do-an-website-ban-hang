@@ -14,4 +14,9 @@ public interface OrderService {
     Order save(Order order);
 
     void remove(Integer id);
+
+    Page<Order> findAllByDateOrderContaining(String s, Pageable pageable);
+
+    Page<Order> findAllByStatus(String value, Pageable pageable);
+
 }
