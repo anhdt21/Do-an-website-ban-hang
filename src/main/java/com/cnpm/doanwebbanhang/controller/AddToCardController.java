@@ -170,7 +170,7 @@ public class AddToCardController {
             item.setOrder(order);
             itemService.save(item);
         }
-        session.invalidate();
+        items.clear();
 
         ModelAndView modelAndView = new ModelAndView("/UI/index");
         modelAndView.addObject("message", "Mua hàng thành công. Cửa hàng sẽ liên hệ cho bạn trong thời gian sớm nhất.");

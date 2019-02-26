@@ -21,4 +21,6 @@ public interface UserService {
 
     Page<User> findAllByPhoneContaining(String s, Pageable pageable);
 
+    User findByUserName(String username);
+
 }

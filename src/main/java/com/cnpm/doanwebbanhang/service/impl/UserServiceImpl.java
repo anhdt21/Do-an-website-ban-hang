@@ -51,5 +51,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllByPhoneContaining(s, pageable);
     }
 
+    @Override
+    public User findByUserName(String username) {
+        return userRepository.findByUserName(username);
+    }
+
 
 }

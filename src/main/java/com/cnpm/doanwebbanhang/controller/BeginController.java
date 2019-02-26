@@ -90,46 +90,56 @@ public class BeginController {
     @GetMapping("/checkout")
     public ModelAndView showShop(@PageableDefault(size = 20) Pageable pageable, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (session.getAttribute("order") == null){
+        if (session.getAttribute("order") == null) {
             Page<Producer> producers = producerService.findAll(pageable);
             Page<ProductType> productTypes = productTypeService.findAll(pageable);
-            ModelAndView modelAndView = new ModelAndView("UI/index", "message","Giỏ hàng trống !");
+            ModelAndView modelAndView = new ModelAndView("UI/index", "message", "Giỏ hàng trống !");
             modelAndView.addObject("producers", producers);
             modelAndView.addObject("productTypes", productTypes);
             modelAndView.addObject("size", getSize(request));
             return modelAndView;
+        } else {
+            Page<Product> products = productService.findAll(pageable);
+            Page<Producer> producers = producerService.findAll(pageable);
+            Page<ProductType> productTypes = productTypeService.findAll(pageable);
+            ModelAndView modelAndView = new ModelAndView("UI/checkout");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("size", getSize(request));
+            modelAndView.addObject("products", products);
+            return modelAndView;
         }
-        Page<Product> products = productService.findAll(pageable);
-        Page<Producer> producers = producerService.findAll(pageable);
-        Page<ProductType> productTypes = productTypeService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("UI/checkout");
-        modelAndView.addObject("producers", producers);
-        modelAndView.addObject("productTypes", productTypes);
-        modelAndView.addObject("size", getSize(request));
-        modelAndView.addObject("products", products);
-        return modelAndView;
     }
 
     @GetMapping("/save-customer")
-    public ModelAndView newRegister(@PageableDefault(size = 10) Pageable pageable ,
+    public ModelAndView newRegister(@PageableDefault(size = 20) Pageable pageable ,
                                     @ModelAttribute("customer") Customer customer,
                                     @ModelAttribute("order") Order order, HttpServletRequest request) {
-        Page<Producer> producers = producerService.findAll(pageable);
-        Page<ProductType> productTypes = productTypeService.findAll(pageable);
-        User user = userService.findByName(getUserName());
-        ModelAndView modelAndView = new ModelAndView("UI/buy_products");
-        modelAndView.addObject("producers", producers);
-        modelAndView.addObject("productTypes", productTypes);
-
         HttpSession session = request.getSession();
-//        Order order = (Order) session.getAttribute("order");
-        modelAndView.addObject("customer", customer);
-        modelAndView.addObject("size", getSize(request));
-        return modelAndView;
+        if (session.getAttribute("order") == null) {
+            Page<Producer> producers = producerService.findAll(pageable);
+            Page<ProductType> productTypes = productTypeService.findAll(pageable);
+            ModelAndView modelAndView = new ModelAndView("UI/index", "message", "Giỏ hàng trống !");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("size", getSize(request));
+            return modelAndView;
+        } else {
+            Page<Producer> producers = producerService.findAll(pageable);
+            Page<ProductType> productTypes = productTypeService.findAll(pageable);
+            User user = userService.findByUserName(getUserName());
+            ModelAndView modelAndView = new ModelAndView("UI/buy_products");
+            modelAndView.addObject("producers", producers);
+            modelAndView.addObject("productTypes", productTypes);
+            modelAndView.addObject("customer", customer);
+            modelAndView.addObject("user", user);
+            modelAndView.addObject("size", getSize(request));
+            return modelAndView;
+        }
     }
 
     @GetMapping("/view-product/{id}")
-    public ModelAndView showViewProduct(@PageableDefault(size = 10) Pageable pageable ,@PathVariable Integer id, HttpServletRequest request) {
+    public ModelAndView showViewProduct(@PageableDefault Pageable pageable ,@PathVariable Integer id, HttpServletRequest request) {
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
         Optional<Product> product = productService.findById(id);
@@ -143,7 +153,7 @@ public class BeginController {
     }
 
     @GetMapping("/choice-product-type/{id}")
-    public ModelAndView showFormProductType(@PageableDefault(size = 10) Pageable pageable, @PathVariable Long id, HttpServletRequest request) {
+    public ModelAndView showFormProductType(@PageableDefault Pageable pageable, @PathVariable Long id, HttpServletRequest request) {
         Page<Product> products = productService.findAllByProductType_Id(id, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -191,7 +201,7 @@ public class BeginController {
     }
 
     @GetMapping("/choice-producer/{id}")
-    public ModelAndView showFormProducer(@PageableDefault(size = 10) Pageable pageable, @PathVariable Long id, HttpServletRequest request) {
+    public ModelAndView showFormProducer(@PageableDefault Pageable pageable, @PathVariable Long id, HttpServletRequest request) {
         Page<Product> products = productService.findAllByProducer_Id(id, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -249,7 +259,7 @@ public class BeginController {
     }
 
     @GetMapping("/cost5")
-    public ModelAndView showProductcostless5(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
+    public ModelAndView showProductcostless5(@PageableDefault Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceLessThan( 5000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -265,7 +275,7 @@ public class BeginController {
     }
 
     @GetMapping("/cost10")
-    public ModelAndView showProductcostless10(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
+    public ModelAndView showProductcostless10(@PageableDefault Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceBetween( 5000000, 10000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -281,7 +291,7 @@ public class BeginController {
     }
 
     @GetMapping("/cost15")
-    public ModelAndView showProductcostless15(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
+    public ModelAndView showProductcostless15(@PageableDefault Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceBetween( 10000000, 15000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -297,7 +307,7 @@ public class BeginController {
     }
 
     @GetMapping("/cost20")
-    public ModelAndView showProductcostless500(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
+    public ModelAndView showProductcostless500(@PageableDefault Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByUnitPriceBetween( 15000000, 500000000, pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);
@@ -313,7 +323,7 @@ public class BeginController {
     }
 
     @GetMapping("/hot-product")
-    public ModelAndView showHotProduct(@PageableDefault(size = 10) Pageable pageable, HttpServletRequest request) {
+    public ModelAndView showHotProduct(@PageableDefault Pageable pageable, HttpServletRequest request) {
         Page<Product> products = productService.findAllByHotContaining( "1", pageable);
         Page<Producer> producers = producerService.findAll(pageable);
         Page<ProductType> productTypes = productTypeService.findAll(pageable);

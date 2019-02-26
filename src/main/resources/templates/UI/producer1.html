@@ -182,7 +182,7 @@
 				</div>
 			</th:block>
 		</div>
-		<div style="float: left; margin-left: 120px; color: blue; font-size: large;">
+		<div th:if="${products}" style="float: left; margin-left: 120px; color: blue; font-size: large;">
 			<a th:href="@{'/choice-producer/1'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
 			<span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
 			<a th:href="@{'/choice-producer/1'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>

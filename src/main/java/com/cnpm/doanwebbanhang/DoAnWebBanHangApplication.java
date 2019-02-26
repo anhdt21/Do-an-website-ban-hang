@@ -12,6 +12,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -56,6 +57,11 @@ public class DoAnWebBanHangApplication {
     }
 
     @Bean
+    UserDetailsService userDetailsService() {
+        return new UserDetailServiceImpl();
+    }
+
+    @Bean
     public BillService billService() {
         return new BillServiceImpl();
     }
@@ -69,7 +75,6 @@ public class DoAnWebBanHangApplication {
     public CustomerService customerService() {
         return new CustomerServiceImpl();
     }
-
 
     @Bean
     public ProducerService producerService() {
