@@ -114,7 +114,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<button onclick="myFunction()" type="button" style=" margin-top: 10px;margin-bottom: 10px;inline-height: 40px;" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+					<button id="button1" onclick="myFunction()" type="button" style=" margin-top: 10px;margin-bottom: 10px;inline-height: 40px;" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
 						<i class="fa fa-print"></i>  Getting Bill
 					</button>
 
@@ -125,6 +125,7 @@
 </div>
 <script>
     function myFunction() {
+        document.getElementById("button1").style.display = 'none';
         window.print();
     }
 </script>
