@@ -212,7 +212,7 @@
         <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
     <div class="title"><label th:text="${product.name}"></label></div>
     <div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><label>   .    </label></div>
-    <div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><label>   .    </label></div>
+    <div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><span>   .    </span></div>
     <div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
     <div class="oldprice" th:if="${not #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice}"></label> VNĐ</div>
     <div class="price" th:if="${not #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice - product.unitPrice * product.promotionPrice / 100}"></label> VNĐ</div></a>
@@ -238,7 +238,7 @@
                 <a th:href="@{/view-product/__${product.id}__ }"><div class="image"><img th:src="@{/__${product.image}__}" /></div>
                     <div class="title"><label th:text="${product.name}"></label></div>
                     <div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><label>   .    </label></div>
-                    <div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><label>   .    </label></div>
+                    <div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><span>   .    </span></div>
                     <div class="price" th:if="${ #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
                 <div class="oldprice" th:if="${not #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice}"></label> VNĐ</div></a>
                 <div class="price" th:if="${not #strings.startsWith(product.promotionPrice,'0')}"><label th:text="${product.unitPrice - product.unitPrice * product.promotionPrice / 100}"></label> VNĐ</div></a>
