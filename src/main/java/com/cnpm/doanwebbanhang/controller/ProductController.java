@@ -82,14 +82,51 @@ public class ProductController {
     @GetMapping("/products")
     public ModelAndView listProduct(@PageableDefault(size = 10)Pageable pageable, @ModelAttribute("s") String s) {
         Page<Product> products;
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
         if (s == null) {
             products = productService.findAll(pageable);
         } else {
-
             products = productService.findAllByNameContaining(s, pageable);
         }
         ModelAndView modelAndView = new ModelAndView("/product/list");
         modelAndView.addObject("products", products);
+        modelAndView.addObject("productTypes", productTypes);
+        modelAndView.addObject("producers", producers);
+        return modelAndView;
+    }
+
+    @GetMapping("/productByType/{id}")
+    public ModelAndView productByType(@PathVariable Long id, @PageableDefault(size = 10)Pageable pageable, @ModelAttribute("s") String s) {
+        Page<Product> products;
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        if (s == null) {
+            products = productService.findAllByProductType_Id(id, pageable);
+        } else {
+            products = productService.findAllByProductType_Id(id, pageable);
+        }
+        ModelAndView modelAndView = new ModelAndView("/product/list");
+        modelAndView.addObject("products", products);
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
+        return modelAndView;
+    }
+
+    @GetMapping("/productByProducer/{id}")
+    public ModelAndView productByProducer(@PathVariable Long id, @PageableDefault(size = 10)Pageable pageable, @ModelAttribute("s") String s) {
+        Page<Product> products;
+        Page<ProductType> productTypes = productTypeService.findAll(pageable);
+        Page<Producer> producers = producerService.findAll(pageable);
+        if (s == null) {
+            products = productService.findAllByProducer_Id(id, pageable);
+        } else {
+            products = productService.findAllByProducer_Id(id, pageable);
+        }
+        ModelAndView modelAndView = new ModelAndView("/product/list");
+        modelAndView.addObject("products", products);
+        modelAndView.addObject("producers", producers);
+        modelAndView.addObject("productTypes", productTypes);
         return modelAndView;
     }
 
